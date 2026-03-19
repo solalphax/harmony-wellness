@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Get help with your booking - Harmony Wellness Support">
+    <title>Support - Harmony Wellness</title>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="style.css">
+    
+    <style>
+        /* Support Page Specific Styles */
+        .support-section {
+            padding: 120px 0 60px;
+            background: linear-gradient(180deg, #f8f9fa 0%, #ffffff 100%);
+            min-height: 100vh;
+        }
+        
+        .support-container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        
+        .support-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        
+        .support-header h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            color: #1a1a2e;
+            margin-bottom: 15px;
+        }
+        
+        .support-header p {
+            color: #6b7280;
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        /* FAQ Section */
+        .faq-section {
+            margin-bottom: 50px;
+        }
+        
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 30px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #e5e7eb;
+        }
+        
+        .section-header h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            color: #1a1a2e;
+        }
+        
+        .section-header i {
+            color: #14b8a6;
+            font-size: 1.3rem;
+        }
+        
+        .faq-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+            gap: 20px;
+        }
+        
+        .faq-item {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+        
+        .faq-item:hover {
+            box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+        }
+        
+        .faq-question {
+            padding: 20px 25px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 500;
+            color: #1a1a2e;
+            transition: background 0.3s ease;
+        }
+        
+        .faq-question:hover {
+            background: #f9fafb;
+        }
+        
+        .faq-question i {
+            color: #14b8a6;
+            transition: transform 0.3s ease;
+        }
+        
+        .faq-item.active .faq-question i {
+            transform: rotate(180deg);
+        }
+        
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+        
+        .faq-item.active .faq-answer {
+            max-height: 300px;
+        }
+        
+        .faq-answer-content {
+            padding: 0 25px 20px;
+            color: #6b7280;
+            line-height: 1.6;
+        }
+        
+        /* Contact Section */
+        .contact-section {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            margin-bottom: 50px;
+        }
+        
+        .contact-card {
+            background: white;
+            border-radius: 16px;
+            padding: 35px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+        }
+        
+        .contact-card h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.3rem;
+            color: #1a1a2e;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .contact-card h3 i {
+            color: #14b8a6;
+        }
+        
+        .contact-method {
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+            padding: 15px 0;
+            border-bottom: 1px solid #f3f4f6;
+        }
+        
+        .contact-method:last-child {
+            border-bottom: none;
+        }
+        
+        .contact-icon {
+            width: 40px;
+            height: 40px;
+            background: #f0fdfa;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #14b8a6;
+            flex-shrink: 0;
+        }
+        
+        .contact-details h4 {
+            font-size: 1rem;
+            color: #1a1a2e;
+            margin-bottom: 5px;
+        }
+        
+        .contact-details p {
+            font-size: 0.9rem;
+            color: #6b7280;
+        }
+        
+        .contact-details a {
+            color: #14b8a6;
+            text-decoration: none;
+            font-weight: 500;
+        }
+        
+        .contact-details a:hover {
+            text-decoration: underline;
+        }
+        
+        /* Tally Form Embed */
+        .tally-embed {
+            width: 100%;
+            height: 400px;
+            border: none;
+            border-radius: 12px;
+        }
+        
+        /* Trust Badges */
+        .trust-section {
+            background: linear-gradient(135deg, #134e4a 0%, #0f766e 100%);
+            border-radius: 16px;
+            padding: 40px;
+            color: white;
+            text-align: center;
+        }
+        
+        .trust-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 30px;
+            margin-top: 30px;
+        }
+        
+        .trust-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .trust-item i {
+            font-size: 2rem;
+            opacity: 0.9;
+        }
+        
+        .trust-item span {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+        
+        @media (max-width: 768px) {
+            .faq-grid {
+                grid-template-columns: 1fr;
+            }
+            .contact-section {
+                grid-template-columns: 1fr;
+            }
+            .trust-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+    </style>
+</head>
+<body>
+      <!-- Navigation -->
+    <nav class="main-nav">
+        <div class="container">
+            <div class="nav-wrapper">
+                <a href="index.html" class="logo">
+                    <i class="fas fa-spa"></i>
+                    <span>Harmony Wellness</span>
+                </a>
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="therapists.html">Therapists</a></li>
+                    <li><a href="support.html" class="active">Support</a></li>
+                </ul>
+                <button class="mobile-menu-toggle" onclick="toggleMobileMenu()">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Support Section -->
+    <section class="support-section">
+        <div class="container">
+            <div class="support-container">
+                
+                <div class="support-header">
+                    <h1>How Can We Help?</h1>
+                    <p>Find answers to common questions or reach out to our discreet support team</p>
+                </div>
+
+                <!-- FAQ Section -->
+                <div class="faq-section">
+                    <div class="section-header">
+                        <i class="fas fa-question-circle"></i>
+                        <h2>Frequently Asked Questions</h2>
+                    </div>
+                    
+                    <div class="faq-grid">
+                                              <!-- FAQ 1 -->
+                        <div class="faq-item" onclick="toggleFaq(this)">
+                            <div class="faq-question">
+                                <span>How do I modify or cancel my booking?</span>
+                                <i class="fas fa-chevron-down"></i>
+                            </div>
+                            <div class="faq-answer">
+                                <div class="faq-answer-content">
+                                    Contact support with your reference code at least 4 hours before your appointment for modifications. Cancellations within 2 hours may incur a 25% fee. Use the contact form below for fastest response.
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- FAQ 2 -->
+                        <div class="faq-item" onclick="toggleFaq(this)">
+                            <div class="faq-question">
+                                <span>Is my payment information secure?</span>
+                                <i class="fas fa-chevron-down"></i>
+                            </div>
+                            <div class="faq-answer">
+                                <div class="faq-answer-content">
+                                    Absolutely. We use 256-bit SSL encryption and never store complete payment details. All transactions are processed through secure third-party providers. Your privacy is our priority.
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- FAQ 3 -->
+                        <div class="faq-item" onclick="toggleFaq(this)">
+                            <div class="faq-question">
+                                <span>What should I expect during my first visit?</span>
+                                <i class="fas fa-chevron-down"></i>
+                            </div>
+                            <div class="faq-answer">
+                                <div class="faq-answer-content">
+                                    Arrive 10 minutes early to complete a brief intake form. Your therapist will discuss preferences and any areas needing attention. All sessions are conducted in private, climate-controlled suites with premium amenities.
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- FAQ 4 -->
+                        <div class="faq-item" onclick="toggleFaq(this)">
+                            <div class="faq-question">
+                                <span>How long does payment verification take?</span>
+                                <i class="fas fa-chevron-down"></i>
+                            </div>
+                            <div class="faq-answer">
+                                <div class="faq-answer-content">
+                                    Verification typically takes 1-4 hours during business hours (9 AM - 10 PM). You'll receive email confirmation once verified. For urgent bookings, contact support with your reference code.
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- FAQ 5 -->
+                        <div class="faq-item" onclick="toggleFaq(this)">
+                            <div class="faq-question">
+                                <span>Are your therapists licensed and vetted?</span>
+                                <i class="fas fa-chevron-down"></i>
+                            </div>
+                            <div class="faq-answer">
+                                <div class="faq-answer-content">
+                                    Yes, all therapists hold current licenses and undergo comprehensive background checks. They are independent professionals with 2-8 years experience, rated 4.8+ stars by verified clients.
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- FAQ 6 -->
+                        <div class="faq-item" onclick="toggleFaq(this)">
+                            <div class="faq-question">
+                                <span>What is your privacy policy?</span>
+                                <i class="fas fa-chevron-down"></i>
+                            </div>
+                            <div class="faq-answer">
+                                <div class="faq-answer-content">
+                                    We maintain strict confidentiality. Client information is never shared with third parties. Sessions are private, and we use discreet billing descriptors. Review our full Privacy Policy for complete details.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Contact Section -->
+                <div class="contact-section">
+                                      <!-- Contact Methods -->
+                    <div class="contact-card">
+                        <h3>
+                            <i class="fas fa-headset"></i>
+                            Contact Us
+                        </h3>
+                        
+                        <div class="contact-method">
+                            <div class="contact-icon">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <div class="contact-details">
+                                <h4>Email Support</h4>
+                                <p><a href="mailto:support@harmonywellness.pro">support@harmonywellness.pro</a></p>
+                                <p>Response within 2 hours</p>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-method">
+                            <div class="contact-icon">
+                                <i class="fas fa-comment-dots"></i>
+                            </div>
+                            <div class="contact-details">
+                                <h4>Secure Messaging</h4>
+                                <p>Use the form on this page</p>
+                                <p>Encrypted & confidential</p>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-method">
+                            <div class="contact-icon">
+                                <i class="fas fa-clock"></i>
+                            </div>
+                            <div class="contact-details">
+                                <h4>Support Hours</h4>
+                                <p>9:00 AM - 10:00 PM Daily</p>
+                                <p>365 days/year availability</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Tally Contact Form -->
+                    <div class="contact-card">
+                        <h3>
+                            <i class="fas fa-paper-plane"></i>
+                            Send Message
+                        </h3>
+                        <!-- Replace YOUR_TALLY_FORM_ID with your actual Tally form ID -->
+                        <iframe 
+                            src="https://tally.so/embed/YOUR_TALLY_FORM_ID?alignLeft=1&hideTitle=1&transparentBackground=1&dynamicHeight=1" 
+                            class="tally-embed"
+                            title="Contact Form">
+                        </iframe>
+                    </div>
+                </div>
+
+                <!-- Trust Section -->
+                <div class="trust-section">
+                    <h3 style="font-family: 'Playfair Display', serif; font-size: 1.5rem; margin-bottom: 10px;">
+                        Your Privacy, Our Promise
+                    </h3>
+                    <p style="opacity: 0.9;">Discretion is at the core of everything we do</p>
+                    
+                    <div class="trust-grid">
+                        <div class="trust-item">
+                            <i class="fas fa-lock"></i>
+                            <span>256-bit SSL</span>
+                        </div>
+                        <div class="trust-item">
+                            <i class="fas fa-user-secret"></i>
+                            <span>Anonymous Booking</span>
+                        </div>
+                        <div class="trust-item">
+                            <i class="fas fa-file-shield"></i>
+                            <span>Encrypted Records</span>
+                        </div>
+                        <div class="trust-item">
+                            <i class="fas fa-eye-slash"></i>
+                            <span>Discreet Billing</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="main-footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <h3>Harmony Wellness</h3>
+                    <p>Premium massage therapy delivered with discretion and professionalism.</p>
+                </div>
+                <div class="footer-links">
+                    <a href="privacy.html">Privacy Policy</a>
+                    <a href="terms.html">Terms of Service</a>
+                    <a href="support.html">Support</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Harmony Wellness. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        // FAQ Toggle Function
+        function toggleFaq(element) {
+            // Close all other FAQs
+            document.querySelectorAll('.faq-item').forEach(item => {
+                if (item !== element) {
+                    item.classList.remove('active');
+                }
+            });
+            
+            // Toggle current
+            element.classList.toggle('active');
+        }
+    </script>
+</body>
+</html>
