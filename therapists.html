@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Meet our 11 professional massage therapists at Harmony Wellness. Certified, experienced, and dedicated to your relaxation.">
+    <title>Our Therapists | Harmony Wellness</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Open+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Sticky Header -->
+    <header class="header-sticky">
+        <div class="container header-container">
+            <a href="index.html" class="logo">
+                <span class="logo-icon">◆</span>
+                <span class="logo-text">Harmony Wellness</span>
+            </a>
+            <nav class="main-nav" aria-label="Main Navigation">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="therapists.html" class="nav-link active">Therapists</a>
+                <a href="services.html" class="nav-link">Services</a>
+                <a href="support.html" class="nav-link">Support</a>
+                <a href="checkout.html" class="nav-link nav-cta">Book Now</a>
+            </nav>
+            <button class="mobile-menu-toggle" aria-label="Toggle mobile menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </header>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <div class="page-header-content">
+                <span class="page-label">Our Team</span>
+                <h1 class="page-title">Professional Massage Therapists</h1>
+                <p class="page-subtitle">11 certified professionals dedicated to your ultimate relaxation and well-being</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Therapists Grid -->
+    <section class="section section-all-therapists">
+        <div class="container">
+            <div class="therapists-full-grid" id="therapistsGrid">
+                <!-- All 11 therapists populated by JS -->
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="section section-cta-final bg-light">
+        <div class="container">
+            <div class="cta-box cta-box-compact">
+                <h2 class="cta-title">Found Your Perfect Match?</h2>
+                <p class="cta-desc">Book directly with your preferred therapist today.</p>
+                <a href="services.html" class="btn btn-primary btn-large">Browse Services</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="index.html" class="logo">
+                        <span class="logo-icon">◆</span>
+                        <span class="logo-text">Harmony Wellness</span>
+                    </a>
+                    <p class="footer-tagline">Premium massage therapy with absolute discretion.</p>
+                    <div class="footer-secure">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                        </svg>
+                        100% Confidential & Secure
+                    </div>
+                </div>
+                <div class="footer-links">
+                    <h4 class="footer-title">Quick Links</h4>
+                    <nav aria-label="Footer Navigation">
+                        <a href="index.html">Home</a>
+                        <a href="therapists.html">Our Therapists</a>
+                        <a href="services.html">Services</a>
+                        <a href="support.html">Support</a>
+                    </nav>
+                </div>
+                <div class="footer-links">
+                    <h4 class="footer-title">Legal</h4>
+                    <nav aria-label="Legal Navigation">
+                        <a href="#" onclick="alert('Privacy Policy placeholder'); return false;">Privacy Policy</a>
+                        <a href="#" onclick="alert('Terms of Service placeholder'); return false;">Terms of Service</a>
+                    </nav>
+                </div>
+                <div class="footer-contact">
+                    <h4 class="footer-title">Support</h4>
+                    <p>Visit our <a href="support.html">Support Center</a></p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p class="copyright">&copy; 2026 Harmony Wellness. All rights reserved.</p>
+                <p class="footer-note">No personal data stored beyond essentials. Manual verification ensures maximum privacy.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Floating Book Now Button -->
+    <a href="checkout.html" class="floating-cta" aria-label="Book Now">
+        <span>Book Now</span>
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="5" y1="12" x2="19" y2="12"></line>
+            <polyline points="12 5 19 12 12 19"></polyline>
+        </svg>
+    </a>
+
+    <script src="script.js"></script>
+</body>
+</html>
