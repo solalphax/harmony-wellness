@@ -313,3 +313,112 @@ document.addEventListener('DOMContentLoaded', () => {
     // Add loaded class to body for CSS transitions
     document.body.classList.add('loaded');
 });
+/* ============================================
+   WEB3FORMS INTEGRATION
+   ============================================ */
+
+// Web3forms configuration
+const WEB3FORMS_CONFIG = {
+    accessKey: 'c417cc6f-33c6-4083-85b4-29af8c8f5258',
+    endpoint: 'https://api.web3forms.com/submit'
+};
+
+// Generic Web3forms submit function
+async function submitToWeb3forms(formData) {
+    // Ensure access key is included
+    if (!formData.get('access_key')) {
+        formData.append('access_key', WEB3FORMS_CONFIG.accessKey);
+    }
+    
+    // Add botcheck if not present
+    if (!formData.get('botcheck')) {
+        formData.append('botcheck', '');
+    }
+    
+    try {
+        const response = await fetch(WEB3FORMS_CONFIG.endpoint, {
+            method: 'POST',
+            body: formData
+        });
+        
+        const data = await response.json();
+        
+        if (!response.ok || !data.success) {
+            throw new Error(data.message || 'Form submission failed');
+        }
+        
+        return { success: true, data: data };
+    } catch (error) {
+        console.error('Web3forms submission error:', error);
+        return { success: false, error: error.message };
+    }
+}
+
+// Format booking data for Web3forms message
+function formatBookingMessage(bookingData) {
+    return `
+Booking Details:
+----------------
+Reference: ${bookingData.refcode || 'N/A'}
+Therapist: ${bookingData.therapist || 'Not selected'}
+Service: ${bookingData.service || 'Standard Massage'}
+Duration: ${bookingData.duration || '60'} minutes
+Add-ons: ${bookingData.addon ? 'Yes' : 'None'}
+Total: $${bookingData.total || '0'}
+Payment Method: ${bookingData.paymentMethod || 'Pending'}
+
+Client Notes:
+${bookingData.notes || 'None provided'}
+    `.trim();
+}
+
+// Initialize all Web3forms on the page
+document.addEventListener('DOMContentLoaded', () => {
+    // Auto-initialize forms with data-web3forms attribute
+    document.querySelectorAll('form[data-web3forms]').forEach(form => {
+        form.addEventListener('submit', handleWeb3formsSubmit);
+    });
+});
+
+async function handleWeb3formsSubmit(e) {
+    e.preventDefault();
+    const form = e.target;
+    const submitBtn = form.querySelector('button[type="submit"]');
+    const originalText = submitBtn.innerHTML;
+    
+    // Show loading
+    submitBtn.disabled = true;
+    submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
+    
+    const formData = new FormData(form);
+    const result = await submitToWeb3forms(formData);
+    
+    if (result.success) {
+        // Show success
+        const successDiv = document.createElement('div');
+        successDiv.className = 'web3forms-success';
+        successDiv.innerHTML = `
+            <div style="background: #d1fae5; border: 1px solid #10b981; border-radius: 8px; padding: 20px; text-align: center; margin-top: 20px;">
+                <i class="fas fa-check-circle" style="color: #059669; font-size: 2rem; margin-bottom: 10px;"></i>
+                <h4 style="color: #065f46; margin: 0 0 5px;">Message Sent!</h4>
+                <p style="color: #065f46; margin: 0; font-size: 0.9rem;">We'll respond within 2 hours.</p>
+            </div>
+        `;
+        
+        form.style.display = 'none';
+        form.parentNode.appendChild(successDiv);
+        
+        // Reset after delay
+        setTimeout(() => {
+            form.reset();
+            form.style.display = 'block';
+            successDiv.remove();
+            submitBtn.disabled = false;
+            submitBtn.innerHTML = originalText;
+        }, 5000);
+    } else {
+        alert('Failed to send: ' + result.error);
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = originalText;
+    }
+}
