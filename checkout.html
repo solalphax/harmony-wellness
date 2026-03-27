@@ -3,233 +3,349 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Complete your booking with Harmony Wellness. Secure, private, and discreet reservation process.">
+    <meta name="description" content="Complete your booking securely.">
     <title>Checkout | Harmony Wellness</title>
+    
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Open+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
+    
+    <style>
+        .checkout-container {
+            max-width: 700px;
+            margin: 0 auto;
+            padding: 140px 20px 60px;
+        }
+        .checkout-card {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        .checkout-header {
+            background: linear-gradient(135deg, #134e4a 0%, #0f766e 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+        .checkout-header h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            margin-bottom: 5px;
+        }
+        .checkout-header p {
+            opacity: 0.9;
+            margin: 0;
+        }
+        .checkout-body {
+            padding: 30px;
+        }
+        .booking-summary-checkout {
+            background: #f9fafb;
+            border-radius: 12px;
+            padding: 25px;
+            margin-bottom: 25px;
+        }
+        .summary-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 12px 0;
+            border-bottom: 1px solid #e5e7eb;
+        }
+        .summary-row:last-child {
+            border-bottom: none;
+            font-weight: 600;
+            font-size: 1.2rem;
+            color: #0f766e;
+            margin-top: 10px;
+            padding-top: 15px;
+            border-top: 2px solid #14b8a6;
+        }
+        .summary-label {
+            color: #6b7280;
+        }
+        .summary-value {
+            color: #1a1a2e;
+            font-weight: 500;
+        }
+        .edit-link {
+            color: #14b8a6;
+            font-size: 0.85rem;
+            cursor: pointer;
+        }
+        .edit-link:hover {
+            text-decoration: underline;
+        }
+        .addon-toggle-checkout {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: white;
+            border: 2px solid #e5e7eb;
+            border-radius: 10px;
+            padding: 15px 20px;
+            margin-bottom: 20px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        .addon-toggle-checkout:hover {
+            border-color: #14b8a6;
+        }
+        .addon-toggle-checkout.active {
+            border-color: #14b8a6;
+            background: #f0fdfa;
+        }
+        .addon-info {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .addon-checkbox {
+            width: 24px;
+            height: 24px;
+            border: 2px solid #e5e7eb;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            transition: 0.3s;
+        }
+        .addon-toggle-checkout.active .addon-checkbox {
+            background: #14b8a6;
+            border-color: #14b8a6;
+        }
+        .addon-text h4 {
+            margin: 0 0 3px;
+            font-size: 1rem;
+        }
+        .addon-text p {
+            margin: 0;
+            font-size: 0.85rem;
+            color: #6b7280;
+        }
+        .addon-price-tag {
+            font-weight: 600;
+            color: #0f766e;
+        }
+        .checkout-btn {
+            width: 100%;
+            padding: 18px;
+            font-size: 1.1rem;
+            margin-top: 10px;
+        }
+        .secure-note {
+            text-align: center;
+            margin-top: 20px;
+            color: #6b7280;
+            font-size: 0.9rem;
+        }
+        .secure-note i {
+            color: #10b981;
+            margin-right: 5px;
+        }
+    </style>
 </head>
 <body>
-    <!-- Sticky Header -->
-    <header class="header-sticky">
-        <div class="container header-container">
-            <a href="index.html" class="logo">
-                <span class="logo-icon">◆</span>
-                <span class="logo-text">Harmony Wellness</span>
-            </a>
-            <nav class="main-nav" aria-label="Main Navigation">
-                <a href="index.html" class="nav-link">Home</a>
-                <a href="therapists.html" class="nav-link">Therapists</a>
-                <a href="services.html" class="nav-link">Services</a>
-                <a href="support.html" class="nav-link">Support</a>
-                <a href="checkout.html" class="nav-link nav-cta active">Book Now</a>
-            </nav>
-            <button class="mobile-menu-toggle" aria-label="Toggle mobile menu">
-                <span></span>
-                <span></span>
-                <span></span>
-            </button>
-        </div>
-    </header>
-
-    <!-- Page Header -->
-    <section class="page-header page-header-compact">
+    <!-- Navigation -->
+    <nav class="main-nav">
         <div class="container">
-            <div class="page-header-content">
-                <span class="page-label">Reservation</span>
-                <h1 class="page-title">Complete Your Booking</h1>
-                <p class="page-subtitle">Secure, private, and fully confidential</p>
+            <div class="nav-wrapper">
+                <a href="index.html" class="logo">
+                    <i class="fas fa-spa"></i>
+                    <span>Harmony Wellness</span>
+                </a>
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="therapists.html">Therapists</a></li>
+                    <li><a href="support.html">Support</a></li>
+                </ul>
+                <button class="mobile-menu-toggle" onclick="toggleMobileMenu()">
+                    <i class="fas fa-bars"></i>
+                </button>
             </div>
         </div>
-    </section>
-
-    <!-- Checkout Section -->
-    <section class="section section-checkout">
-        <div class="container">
-            <div class="checkout-grid">
+    </nav>
+        <!-- Checkout -->
+    <div class="checkout-container">
+        <div class="checkout-card">
+            <div class="checkout-header">
+                <h1>Complete Your Booking</h1>
+                <p>Review your selections and proceed to payment</p>
+            </div>
+            
+            <div class="checkout-body">
+                <div class="booking-summary-checkout">
+                    <div class="summary-row">
+                        <span class="summary-label">Therapist</span>
+                        <span class="summary-value" id="checkout-therapist">Not selected</span>
+                    </div>
+                    <div class="summary-row">
+                        <span class="summary-label">Service</span>
+                        <span class="summary-value" id="checkout-service">-</span>
+                    </div>
+                    <div class="summary-row">
+                        <span class="summary-label">Duration</span>
+                        <span class="summary-value" id="checkout-duration">-</span>
+                    </div>
+                    <div class="summary-row" id="addon-row" style="display: none;">
+                        <span class="summary-label">Happy Ending</span>
+                        <span class="summary-value" style="color: #14b8a6;">Included</span>
+                    </div>
+                    <div class="summary-row">
+                        <span class="summary-label">Reference Code</span>
+                        <span class="summary-value" id="checkout-ref">-</span>
+                    </div>
+                    <div class="summary-row">
+                        <span class="summary-label">Total</span>
+                        <span class="summary-value" id="checkout-total">$0</span>
+                    </div>
+                </div>
                 
-                <!-- Booking Summary -->
-                <div class="checkout-summary">
-                    <div class="summary-card">
-                        <div class="summary-header">
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
-                                <polyline points="14 2 14 8 20 8"></polyline>
-                            </svg>
-                            <h2>Booking Summary</h2>
+                <!-- Addon Toggle (if not already added) -->
+                <div class="addon-toggle-checkout" id="addon-toggle" onclick="toggleAddonCheckout()">
+                    <div class="addon-info">
+                        <div class="addon-checkbox">
+                            <i class="fas fa-check"></i>
                         </div>
-                        <div class="summary-content" id="bookingSummary">
-                            <div class="summary-row">
-                                <span class="summary-label">Service:</span>
-                                <span class="summary-value" id="summaryService">Not selected</span>
-                            </div>
-                            <div class="summary-row">
-                                <span class="summary-label">Duration:</span>
-                                <span class="summary-value" id="summaryDuration">-</span>
-                            </div>
-                            <div class="summary-row">
-                                <span class="summary-label">Therapist:</span>
-                                <span class="summary-value" id="summaryTherapist">No preference</span>
-                            </div>
-                            <div class="summary-row summary-row-addon hidden" id="addonRow">
-                                <span class="summary-label">Happy Ending:</span>
-                                <span class="summary-value">Yes (+$<span id="addonAmount">0</span>)</span>
-                            </div>
-                            <div class="summary-divider"></div>
-                            <div class="summary-row">
-                                <span class="summary-label">Subtotal:</span>
-                                <span class="summary-value" id="subtotal">$0</span>
-                            </div>
-                            <div class="summary-row">
-                                <span class="summary-label">Tax (10%):</span>
-                                <span class="summary-value" id="tax">$0</span>
-                            </div>
-                            <div class="summary-row summary-total">
-                                <span class="summary-label">Grand Total:</span>
-                                <span class="summary-value" id="grandTotal">$0</span>
-                            </div>
-                        </div>
-                        <div class="summary-note">
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <circle cx="12" cy="12" r="10"></circle>
-                                <line x1="12" y1="16" x2="12" y2="12"></line>
-                                <line x1="12" y1="8" x2="12.01" y2="8"></line>
-                            </svg>
-                            <span>No card details stored. Payment processed securely.</span>
+                        <div class="addon-text">
+                            <h4>Add Happy Ending</h4>
+                            <p>Enhance your experience</p>
                         </div>
                     </div>
-
-                    <!-- Reference Code Card -->
-                    <div class="ref-code-card">
-                        <div class="ref-code-header">
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
-                                <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
-                            </svg>
-                            <h3>Your Reference Code</h3>
-                        </div>
-                        <p class="ref-code-desc">Please include this code when making payment to ensure fast matching:</p>
-                        <div class="ref-code-display" id="refCodeDisplay">HW-XXXXXXXX</div>
-                        <button class="btn btn-secondary btn-small" onclick="copyRefCode()">Copy Code</button>
-                    </div>
+                    <span class="addon-price-tag" id="addon-price-display">+$150</span>
                 </div>
-
-                <!-- Booking Form -->
-                <div class="checkout-form-wrap">
-                    <form class="checkout-form" id="bookingForm" onsubmit="return proceedToPayment(event)">
-                        <div class="form-section">
-                            <h3 class="form-section-title">Contact Information</h3>
-                            <div class="form-row">
-                                <div class="form-group">
-                                    <label for="fullName" class="form-label">Full Name <span class="required">*</span></label>
-                                    <input type="text" id="fullName" name="fullName" class="form-input" required placeholder="Your full name">
-                                </div>
-                                <div class="form-group">
-                                    <label for="email" class="form-label">Email Address <span class="required">*</span></label>
-                                    <input type="email" id="email" name="email" class="form-input" required placeholder="your@email.com">
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="phone" class="form-label">Phone Number <span class="optional">(optional)</span></label>
-                                <input type="tel" id="phone" name="phone" class="form-input" placeholder="For booking confirmations">
-                            </div>
-                        </div>
-
-                        <div class="form-section">
-                            <h3 class="form-section-title">Session Details</h3>
-                            <div class="form-row">
-                                <div class="form-group">
-                                    <label for="preferredDate" class="form-label">Preferred Date <span class="required">*</span></label>
-                                    <input type="date" id="preferredDate" name="preferredDate" class="form-input" required>
-                                </div>
-                                <div class="form-group">
-                                    <label for="preferredTime" class="form-label">Preferred Time <span class="required">*</span></label>
-                                    <input type="time" id="preferredTime" name="preferredTime" class="form-input" required>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="specialRequests" class="form-label">Special Requests <span class="optional">(optional)</span></label>
-                                <textarea id="specialRequests" name="specialRequests" class="form-textarea" rows="3" placeholder="Any specific preferences, focus areas, or requirements..."></textarea>
-                            </div>
-                        </div>
-
-                        <div class="form-privacy">
-                            <div class="privacy-item">
-                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
-                                </svg>
-                                <span>Your information is encrypted and never shared</span>
-                            </div>
-                            <div class="privacy-item">
-                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
-                                    <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
-                                </svg>
-                                <span>100% confidential booking process</span>
-                            </div>
-                        </div>
-
-                        <div class="form-actions">
-                            <button type="submit" class="btn btn-primary btn-large btn-full">
-                                Proceed to Payment
-                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <line x1="5" y1="12" x2="19" y2="12"></line>
-                                    <polyline points="12 5 19 12 12 19"></polyline>
-                                </svg>
-                            </button>
-                        </div>
-                    </form>
-                </div>
+                
+                <button class="btn-primary checkout-btn" onclick="proceedToPayment()">
+                    Proceed to Payment
+                    <i class="fas fa-arrow-right"></i>
+                </button>
+                
+                <p class="secure-note">
+                    <i class="fas fa-lock"></i>
+                    Secure 256-bit encryption. Your privacy is protected.
+                </p>
             </div>
         </div>
-    </section>
+    </div>
 
     <!-- Footer -->
-    <footer class="footer">
+    <footer class="main-footer" style="margin-top: 60px;">
         <div class="container">
-            <div class="footer-grid">
-                <div class="footer-brand">
-                    <a href="index.html" class="logo">
-                        <span class="logo-icon">◆</span>
-                        <span class="logo-text">Harmony Wellness</span>
-                    </a>
-                    <p class="footer-tagline">Premium massage therapy with absolute discretion.</p>
-                    <div class="footer-secure">
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
-                        </svg>
-                        100% Confidential & Secure
-                    </div>
-                </div>
-                <div class="footer-links">
-                    <h4 class="footer-title">Quick Links</h4>
-                    <nav aria-label="Footer Navigation">
-                        <a href="index.html">Home</a>
-                        <a href="therapists.html">Our Therapists</a>
-                        <a href="services.html">Services</a>
-                        <a href="support.html">Support</a>
-                    </nav>
-                </div>
-                <div class="footer-links">
-                    <h4 class="footer-title">Legal</h4>
-                    <nav aria-label="Legal Navigation">
-                        <a href="#" onclick="alert('Privacy Policy placeholder'); return false;">Privacy Policy</a>
-                        <a href="#" onclick="alert('Terms of Service placeholder'); return false;">Terms of Service</a>
-                    </nav>
-                </div>
-                <div class="footer-contact">
-                    <h4 class="footer-title">Support</h4>
-                    <p>Visit our <a href="support.html">Support Center</a></p>
-                </div>
-            </div>
             <div class="footer-bottom">
-                <p class="copyright">&copy; 2026 Harmony Wellness. All rights reserved.</p>
-                <p class="footer-note">No personal data stored beyond essentials. Manual verification ensures maximum privacy.</p>
+                <p>&copy; 2026 Harmony Wellness. All rights reserved.</p>
             </div>
         </div>
     </footer>
 
     <script src="script.js"></script>
+    <script>
+        // Pricing data
+        const servicePrices = {
+            standard: { 60: 110, 90: 160, 120: 210, 240: 380, 480: 680 },
+            nuru: { 60: 220, 90: 320, 120: 420, 240: 750, 480: 1200 },
+            couples: { 60: 280, 90: 380, 120: 480 }
+        };
+        
+        const addonPrices = {
+            standard: { 60: 150, 90: 150, 120: 150, 240: 250, 480: 400 },
+            nuru: { 60: 150, 90: 150, 120: 150, 240: 250, 480: 400 },
+            couples: { 60: 300, 90: 300, 120: 300 }
+        };
+        
+        let bookingData = {
+            therapist: '',
+            service: 'standard',
+            duration: 60,
+            addon: false,
+            price: 0,
+            refcode: ''
+        };
+        
+        function loadCheckoutData() {
+            const params = new URLSearchParams(window.location.search);
+            
+            bookingData.therapist = params.get('therapist') || 'Not selected';
+            bookingData.service = params.get('service') || 'standard';
+            bookingData.duration = parseInt(params.get('duration')) || 60;
+            bookingData.addon = params.get('addon') === 'true';
+            bookingData.refcode = params.get('refcode') || generateRefCode();
+            
+            // Calculate base price
+            const basePrice = servicePrices[bookingData.service]?.[bookingData.duration] || 110;
+            
+            // Calculate addon price
+            const addonPrice = bookingData.addon ? 
+                (addonPrices[bookingData.service]?.[bookingData.duration] || 150) : 0;
+            
+            bookingData.price = basePrice + addonPrice;
+            
+            // Update display
+            updateDisplay();
+        }
+        
+        function generateRefCode() {
+            return 'HW-' + Math.random().toString(36).substr(2, 6).toUpperCase();
+        }
+        
+        function updateDisplay() {
+            document.getElementById('checkout-therapist').textContent = bookingData.therapist;
+            document.getElementById('checkout-service').textContent = 
+                bookingData.service.charAt(0).toUpperCase() + bookingData.service.slice(1) + ' Massage';
+            document.getElementById('checkout-duration').textContent = bookingData.duration + ' minutes';
+            document.getElementById('checkout-ref').textContent = bookingData.refcode;
+            document.getElementById('checkout-total').textContent = '$' + bookingData.price;
+            
+            // Update addon toggle
+            const toggle = document.getElementById('addon-toggle');
+            const checkbox = toggle.querySelector('.addon-checkbox');
+            const addonRow = document.getElementById('addon-row');
+            
+            if (bookingData.addon) {
+                toggle.classList.add('active');
+                checkbox.innerHTML = '<i class="fas fa-check"></i>';
+                addonRow.style.display = 'flex';
+            } else {
+                toggle.classList.remove('active');
+                checkbox.innerHTML = '';
+                addonRow.style.display = 'none';
+            }
+            
+            // Update addon price display
+            const addonPrice = addonPrices[bookingData.service]?.[bookingData.duration] || 150;
+            document.getElementById('addon-price-display').textContent = '+$' + addonPrice;
+        }
+        
+        function toggleAddonCheckout() {
+            bookingData.addon = !bookingData.addon;
+            
+            // Recalculate price
+            const basePrice = servicePrices[bookingData.service]?.[bookingData.duration] || 110;
+            const addonPrice = bookingData.addon ? 
+                (addonPrices[bookingData.service]?.[bookingData.duration] || 150) : 0;
+            bookingData.price = basePrice + addonPrice;
+            
+            updateDisplay();
+        }
+        
+        function proceedToPayment() {
+            const params = new URLSearchParams({
+                therapist: bookingData.therapist,
+                service: bookingData.service,
+                duration: bookingData.duration,
+                addon: bookingData.addon,
+                total: bookingData.price,
+                refcode: bookingData.refcode
+            });
+            
+            window.location.href = 'payment.html?' + params.toString();
+        }
+        
+        // Initialize
+        document.addEventListener('DOMContentLoaded', loadCheckoutData);
+    </script>
 </body>
 </html>
