@@ -3,121 +3,508 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Meet our 11 professional massage therapists at Harmony Wellness. Certified, experienced, and dedicated to your relaxation.">
+    <meta name="description" content="Meet our 11 elite licensed massage therapists. View profiles, ratings, and book instantly.">
     <title>Our Therapists | Harmony Wellness</title>
+    
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Open+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
+    
+    <style>
+        .therapists-full-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 30px;
+            padding: 40px 0;
+        }
+        .therapist-full-card {
+            background: white;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .therapist-full-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 40px rgba(0,0,0,0.15);
+        }
+        .therapist-img-wrap {
+            height: 280px;
+            overflow: hidden;
+            position: relative;
+        }
+        .therapist-img-wrap img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .therapist-rating {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: rgba(255,255,255,0.95);
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-weight: 600;
+            color: #f59e0b;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        .therapist-info {
+            padding: 25px;
+        }
+        .therapist-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: start;
+            margin-bottom: 10px;
+        }
+        .therapist-name {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.4rem;
+            color: #1a1a2e;
+            margin: 0;
+        }
+        .therapist-meta {
+            color: #6b7280;
+            font-size: 0.9rem;
+            margin-bottom: 15px;
+        }
+        .therapist-bio {
+            color: #4b5563;
+            line-height: 1.6;
+            margin-bottom: 15px;
+            font-size: 0.95rem;
+        }
+        .therapist-specialty {
+            display: inline-block;
+            background: #f0fdfa;
+            color: #0f766e;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            margin-bottom: 15px;
+        }
+        .testimonials {
+            background: #f9fafb;
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+        .testimonial {
+            font-size: 0.85rem;
+            color: #4b5563;
+            font-style: italic;
+            margin-bottom: 8px;
+            padding-left: 15px;
+            border-left: 3px solid #14b8a6;
+        }
+        .testimonial:last-child {
+            margin-bottom: 0;
+        }
+        .book-therapist-btn {
+            width: 100%;
+            padding: 14px;
+            background: linear-gradient(135deg, #14b8a6 0%, #0f766e 100%);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+        .book-therapist-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(20, 184, 166, 0.4);
+        }
+    </style>
 </head>
 <body>
-    <!-- Sticky Header -->
-    <header class="header-sticky">
-        <div class="container header-container">
-            <a href="index.html" class="logo">
-                <span class="logo-icon">◆</span>
-                <span class="logo-text">Harmony Wellness</span>
-            </a>
-            <nav class="main-nav" aria-label="Main Navigation">
-                <a href="index.html" class="nav-link">Home</a>
-                <a href="therapists.html" class="nav-link active">Therapists</a>
-                <a href="services.html" class="nav-link">Services</a>
-                <a href="support.html" class="nav-link">Support</a>
-                <a href="checkout.html" class="nav-link nav-cta">Book Now</a>
-            </nav>
-            <button class="mobile-menu-toggle" aria-label="Toggle mobile menu">
-                <span></span>
-                <span></span>
-                <span></span>
-            </button>
+    <!-- Navigation -->
+    <nav class="main-nav">
+        <div class="container">
+            <div class="nav-wrapper">
+                <a href="index.html" class="logo">
+                    <i class="fas fa-spa"></i>
+                    <span>Harmony Wellness</span>
+                </a>
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="therapists.html" class="active">Therapists</a></li>
+                    <li><a href="support.html">Support</a></li>
+                </ul>
+                <a href="checkout.html" class="btn-nav">Book Now</a>
+                <button class="mobile-menu-toggle" onclick="toggleMobileMenu()">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
         </div>
-    </header>
+    </nav>
 
     <!-- Page Header -->
-    <section class="page-header">
+    <section class="section-light" style="padding-top: 140px; padding-bottom: 20px;">
         <div class="container">
-            <div class="page-header-content">
-                <span class="page-label">Our Team</span>
-                <h1 class="page-title">Professional Massage Therapists</h1>
-                <p class="page-subtitle">11 certified professionals dedicated to your ultimate relaxation and well-being</p>
+            <div class="section-header">
+                <span class="section-subtitle">Our Team</span>
+                <h2 class="section-title">11 Elite Therapists</h2>
+                <p class="section-description">Licensed professionals with years of experience and hundreds of satisfied clients</p>
             </div>
         </div>
     </section>
-
-    <!-- Therapists Grid -->
-    <section class="section section-all-therapists">
+        <!-- Therapists Grid -->
+    <section class="section-light" style="padding-top: 0;">
         <div class="container">
-            <div class="therapists-full-grid" id="therapistsGrid">
-                <!-- All 11 therapists populated by JS -->
-            </div>
-        </div>
-    </section>
+            <div class="therapists-full-grid">
+                
+                <!-- Therapist 1: Sophia Rivera -->
+                <div class="therapist-full-card">
+                    <div class="therapist-img-wrap">
+                        <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=400&h=400&fit=crop" alt="Sophia Rivera">
+                        <div class="therapist-rating">
+                            <i class="fas fa-star"></i> 5.0
+                        </div>
+                    </div>
+                    <div class="therapist-info">
+                        <div class="therapist-header">
+                            <h3 class="therapist-name">Sophia Rivera</h3>
+                        </div>
+                        <p class="therapist-meta">Age 28 • 5 years experience • 847 sessions</p>
+                        <span class="therapist-specialty">Nuru & Deep Tissue Specialist</span>
+                        <p class="therapist-bio">Sophia combines technical expertise with intuitive touch. Trained in Tokyo for authentic Nuru techniques, she brings both passion and precision to every session.</p>
+                        <div class="testimonials">
+                            <div class="testimonial">"Sophia has magic hands. Best massage I've ever had, and I've had many." — Michael R.</div>
+                            <div class="testimonial">"Professional, discreet, and incredibly skilled. Already booked my next session." — David K.</div>
+                            <div class="testimonial">"The Nuru experience was beyond expectations. Truly luxurious." — Anonymous</div>
+                        </div>
+                        <button class="book-therapist-btn" onclick="bookWith('Sophia Rivera')">
+                            Book with Sophia
+                            <i class="fas fa-calendar-check"></i>
+                        </button>
+                    </div>
+                </div>
 
-    <!-- CTA Section -->
-    <section class="section section-cta-final bg-light">
-        <div class="container">
-            <div class="cta-box cta-box-compact">
-                <h2 class="cta-title">Found Your Perfect Match?</h2>
-                <p class="cta-desc">Book directly with your preferred therapist today.</p>
-                <a href="services.html" class="btn btn-primary btn-large">Browse Services</a>
+                <!-- Therapist 2: Emma Chen -->
+                <div class="therapist-full-card">
+                    <div class="therapist-img-wrap">
+                        <img src="https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?w=400&h=400&fit=crop" alt="Emma Chen">
+                        <div class="therapist-rating">
+                            <i class="fas fa-star"></i> 4.9
+                        </div>
+                    </div>
+                    <div class="therapist-info">
+                        <div class="therapist-header">
+                            <h3 class="therapist-name">Emma Chen</h3>
+                        </div>
+                        <p class="therapist-meta">Age 26 • 4 years experience • 623 sessions</p>
+                        <span class="therapist-specialty">Swedish & Hot Stone Expert</span>
+                        <p class="therapist-bio">Emma's gentle yet effective approach melts tension away. Her background in traditional Chinese medicine adds unique healing elements to her treatments.</p>
+                        <div class="testimonials">
+                            <div class="testimonial">"Emma made me feel completely at ease. Her hot stone massage is incredible." — James T.</div>
+                            <div class="testimonial">"Attentive to every detail. She remembered my problem areas from last time." — Robert L.</div>
+                            <div class="testimonial">"Beautiful technique, very relaxing atmosphere. Highly recommend." — Anonymous</div>
+                        </div>
+                        <button class="book-therapist-btn" onclick="bookWith('Emma Chen')">
+                            Book with Emma
+                            <i class="fas fa-calendar-check"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Therapist 3: Isabella Santos -->
+                <div class="therapist-full-card">
+                    <div class="therapist-img-wrap">
+                        <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?w=400&h=400&fit=crop" alt="Isabella Santos">
+                        <div class="therapist-rating">
+                            <i class="fas fa-star"></i> 5.0
+                        </div>
+                    </div>
+                    <div class="therapist-info">
+                        <div class="therapist-header">
+                            <h3 class="therapist-name">Isabella Santos</h3>
+                        </div>
+                        <p class="therapist-meta">Age 30 • 6 years experience • 1,124 sessions</p>
+                        <span class="therapist-specialty">Deep Tissue & Sports Massage</span>
+                        <p class="therapist-bio">Former athletic trainer turned massage therapist, Isabella specializes in therapeutic deep tissue work that addresses chronic pain and muscle recovery.</p>
+                        <div class="testimonials">
+                            <div class="testimonial">"Fixed my shoulder pain that no one else could. Isabella is a miracle worker." — Chris M.</div>
+                            <div class="testimonial">"Strong hands, professional demeanor. Perfect for athletes." — Anonymous</div>
+                            <div class="testimonial">"Best deep tissue in the city. Worth every penny." — Steven B.</div>
+                        </div>
+                        <button class="book-therapist-btn" onclick="bookWith('Isabella Santos')">
+                            Book with Isabella
+                            <i class="fas fa-calendar-check"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Therapist 4: Maya Johnson -->
+                <div class="therapist-full-card">
+                    <div class="therapist-img-wrap">
+                        <img src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?w=400&h=400&fit=crop" alt="Maya Johnson">
+                        <div class="therapist-rating">
+                            <i class="fas fa-star"></i> 4.8
+                        </div>
+                    </div>
+                    <div class="therapist-info">
+                        <div class="therapist-header">
+                            <h3 class="therapist-name">Maya Johnson</h3>
+                        </div>
+                        <p class="therapist-meta">Age 27 • 4 years experience • 534 sessions</p>
+                        <span class="therapist-specialty">Nuru & Sensual Massage</span>
+                        <p class="therapist-bio">Maya's warm personality and expert technique create an unforgettable experience. Her Nuru sessions are particularly sought after by regular clients.</p>
+                        <div class="testimonials">
+                            <div class="testimonial">"Maya is absolutely stunning and incredibly skilled. The full package." — Anonymous</div>
+                            <div class="testimonial">"Sweet, professional, and knows exactly what she's doing. 10/10." — Brian S.</div>
+                            <div class="testimonial">"I've seen Maya monthly for a year. Consistently excellent." — Thomas W.</div>
+                        </div>
+                        <button class="book-therapist-btn" onclick="bookWith('Maya Johnson')">
+                            Book with Maya
+                            <i class="fas fa-calendar-check"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Therapist 5: Olivia Park -->
+                <div class="therapist-full-card">
+                    <div class="therapist-img-wrap">
+                        <img src="https://images.unsplash.com/photo-1488426862026-3ee34a7d66df?w=400&h=400&fit=crop" alt="Olivia Park">
+                        <div class="therapist-rating">
+                            <i class="fas fa-star"></i> 4.9
+                        </div>
+                    </div>
+                    <div class="therapist-info">
+                        <div class="therapist-header">
+                            <h3 class="therapist-name">Olivia Park</h3>
+                        </div>
+                        <p class="therapist-meta">Age 29 • 5 years experience • 789 sessions</p>
+                        <span class="therapist-specialty">Couples & Partner Massage</span>
+                        <p class="therapist-bio">Olivia excels at creating harmonious experiences for couples. Her intuitive ability to synchronize with another therapist makes couples sessions magical.</p>
+                        <div class="testimonials">
+                            <div class="testimonial">"My wife and I had an amazing experience with Olivia. Perfect anniversary treat." — Mark & Sarah</div>
+                            <div class="testimonial">"Professional with couples, made us both feel comfortable. Great energy." — Anonymous</div>
+                            <div class="testimonial">"Olivia has a gift for making people feel special. Wonderful personality." — Jason P.</div>
+                        </div>
+                        <button class="book-therapist-btn" onclick="bookWith('Olivia Park')">
+                            Book with Olivia
+                            <i class="fas fa-calendar-check"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Therapist 6: Ava Martinez -->
+                <div class="therapist-full-card">
+                    <div class="therapist-img-wrap">
+                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop" alt="Ava Martinez">
+                        <div class="therapist-rating">
+                            <i class="fas fa-star"></i> 4.9
+                        </div>
+                    </div>
+                    <div class="therapist-info">
+                        <div class="therapist-header">
+                            <h3 class="therapist-name">Ava Martinez</h3>
+                        </div>
+                        <p class="therapist-meta">Age 25 • 3 years experience • 412 sessions</p>
+                        <span class="therapist-specialty">Swedish & Relaxation</span>
+                        <p class="therapist-bio">Ava's soothing touch and calming presence make her perfect for clients seeking pure relaxation. Her Swedish technique is flawless and deeply restorative.</p>
+                        <div class="testimonials">
+                            <div class="testimonial">"Ava is so sweet and her massage put me in a trance. Exactly what I needed." — Daniel R.</div>
+                            <div class="testimonial">"Gentle but effective. Fell asleep twice during the session!" — Anonymous</div>
+                            <div class="testimonial">"Young but very professional. Will definitely book again." — Kevin M.</div>
+                        </div>
+                        <button class="book-therapist-btn" onclick="bookWith('Ava Martinez')">
+                            Book with Ava
+                            <i class="fas fa-calendar-check"></i>
+                        </button>
+                    </div>
+                </div>
+                                <!-- Therapist 7: Jasmine Williams -->
+                <div class="therapist-full-card">
+                    <div class="therapist-img-wrap">
+                        <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=400&h=400&fit=crop" alt="Jasmine Williams">
+                        <div class="therapist-rating">
+                            <i class="fas fa-star"></i> 4.8
+                        </div>
+                    </div>
+                    <div class="therapist-info">
+                        <div class="therapist-header">
+                            <h3 class="therapist-name">Jasmine Williams</h3>
+                        </div>
+                        <p class="therapist-meta">Age 31 • 7 years experience • 1,445 sessions</p>
+                        <span class="therapist-specialty">Thai & Shiatsu Massage</span>
+                        <p class="therapist-bio">Trained in Bangkok and Tokyo, Jasmine brings authentic Eastern techniques to her practice. Her Thai massage incorporates stretching for total body renewal.</p>
+                        <div class="testimonials">
+                            <div class="testimonial">"Jasmine's Thai massage is transformative. Best stretch I've ever had." — Marcus T.</div>
+                            <div class="testimonial">"Knowledgeable about Eastern medicine. Gave great advice too." — Anonymous</div>
+                            <div class="testimonial">"Strong, skilled, and professional. The real deal." — Anthony L.</div>
+                        </div>
+                        <button class="book-therapist-btn" onclick="bookWith('Jasmine Williams')">
+                            Book with Jasmine
+                            <i class="fas fa-calendar-check"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Therapist 8: Chloe Anderson -->
+                <div class="therapist-full-card">
+                    <div class="therapist-img-wrap">
+                        <img src="https://images.unsplash.com/photo-1519345182560-3f2917c472ef?w=400&h=400&fit=crop" alt="Chloe Anderson">
+                        <div class="therapist-rating">
+                            <i class="fas fa-star"></i> 5.0
+                        </div>
+                    </div>
+                    <div class="therapist-info">
+                        <div class="therapist-header">
+                            <h3 class="therapist-name">Chloe Anderson</h3>
+                        </div>
+                        <p class="therapist-meta">Age 24 • 3 years experience • 298 sessions</p>
+                        <span class="therapist-specialty">Nuru & Body Slide</span>
+                        <p class="therapist-bio">Chloe's youthful energy and dedication to her craft have made her one of our most requested therapists for Nuru sessions. She takes pride in perfecting every detail.</p>
+                        <div class="testimonials">
+                            <div class="testimonial">"Chloe is incredible for her age. Technique is mature beyond her years." — Anonymous</div>
+                            <div class="testimonial">"Enthusiastic and attentive. Really focuses on your satisfaction." — Eric B.</div>
+                            <div class="testimonial">"Best Nuru experience I've had. Chloe is special." — Jonathan R.</div>
+                        </div>
+                        <button class="book-therapist-btn" onclick="bookWith('Chloe Anderson')">
+                            Book with Chloe
+                            <i class="fas fa-calendar-check"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Therapist 9: Natalie Brooks -->
+                <div class="therapist-full-card">
+                    <div class="therapist-img-wrap">
+                        <img src="https://images.unsplash.com/photo-1523264653568-d3d4032d1476?w=400&h=400&fit=crop" alt="Natalie Brooks">
+                        <div class="therapist-rating">
+                            <i class="fas fa-star"></i> 4.9
+                        </div>
+                    </div>
+                    <div class="therapist-info">
+                        <div class="therapist-header">
+                            <h3 class="therapist-name">Natalie Brooks</h3>
+                        </div>
+                        <p class="therapist-meta">Age 32 • 8 years experience • 2,156 sessions</p>
+                        <span class="therapist-specialty">Deep Tissue & Medical</span>
+                        <p class="therapist-bio">Our most experienced therapist, Natalie has worked with chiropractors and physical therapists. She specializes in treating chronic pain and injuries.</p>
+                        <div class="testimonials">
+                            <div class="testimonial">"Natalie helped my back pain more than my doctor. Truly therapeutic." — Paul H.</div>
+                            <div class="testimonial">"Medical-grade massage with spa-level comfort. Best of both worlds." — Anonymous</div>
+                            <div class="testimonial">"Natalie knows anatomy like a physician. Fixed my posture issues." — Gregory S.</div>
+                        </div>
+                        <button class="book-therapist-btn" onclick="bookWith('Natalie Brooks')">
+                            Book with Natalie
+                            <i class="fas fa-calendar-check"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Therapist 10: Zoe Taylor -->
+                <div class="therapist-full-card">
+                    <div class="therapist-img-wrap">
+                        <img src="https://images.unsplash.com/photo-1542596594-649edbc13630?w=400&h=400&fit=crop" alt="Zoe Taylor">
+                        <div class="therapist-rating">
+                            <i class="fas fa-star"></i> 4.8
+                        </div>
+                    </div>
+                    <div class="therapist-info">
+                        <div class="therapist-header">
+                            <h3 class="therapist-name">Zoe Taylor</h3>
+                        </div>
+                        <p class="therapist-meta">Age 27 • 4 years experience • 567 sessions</p>
+                        <span class="therapist-specialty">Hot Stone & Aromatherapy</span>
+                        <p class="therapist-bio">Zoe creates immersive sensory experiences combining hot stone therapy with custom essential oil blends. Perfect for stress relief and mental clarity.</p>
+                        <div class="testimonials">
+                            <div class="testimonial">"Zoe's aromatherapy selection is incredible. The whole experience was heavenly." — Matthew C.</div>
+                            <div class="testimonial">"Hot stone massage was perfectly executed. Temperature, placement, everything." — Anonymous</div>
+                            <div class="testimonial">"Left feeling like a new person. Zoe has a healing touch." — Ryan D.</div>
+                        </div>
+                        <button class="book-therapist-btn" onclick="bookWith('Zoe Taylor')">
+                            Book with Zoe
+                            <i class="fas fa-calendar-check"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Therapist 11: Lily Thompson -->
+                <div class="therapist-full-card">
+                    <div class="therapist-img-wrap">
+                        <img src="https://images.unsplash.com/photo-1502823403499-6ccfcf4fb453?w=400&h=400&fit=crop" alt="Lily Thompson">
+                        <div class="therapist-rating">
+                            <i class="fas fa-star"></i> 4.9
+                        </div>
+                    </div>
+                    <div class="therapist-info">
+                        <div class="therapist-header">
+                            <h3 class="therapist-name">Lily Thompson</h3>
+                        </div>
+                        <p class="therapist-meta">Age 29 • 5 years experience • 892 sessions</p>
+                        <span class="therapist-specialty">Full Service & VIP Experience</span>
+                        <p class="therapist-bio">Lily caters to discerning clients seeking the ultimate luxury experience. Her attention to detail and anticipatory service create unforgettable sessions.</p>
+                        <div class="testimonials">
+                            <div class="testimonial">"Lily is in a class of her own. True VIP treatment from start to finish." — VIP Client</div>
+                            <div class="testimonial">"Impeccable service, stunning technique, and genuine warmth. Perfect." — Anonymous</div>
+                            <div class="testimonial">"Worth every dollar and then some. Lily is exceptional." — Alexander K.</div>
+                        </div>
+                        <button class="book-therapist-btn" onclick="bookWith('Lily Thompson')">
+                            Book with Lily
+                            <i class="fas fa-calendar-check"></i>
+                        </button>
+                    </div>
+                </div>
+
             </div>
         </div>
     </section>
 
     <!-- Footer -->
-    <footer class="footer">
+    <footer class="main-footer">
         <div class="container">
-            <div class="footer-grid">
+            <div class="footer-content">
                 <div class="footer-brand">
-                    <a href="index.html" class="logo">
-                        <span class="logo-icon">◆</span>
-                        <span class="logo-text">Harmony Wellness</span>
-                    </a>
-                    <p class="footer-tagline">Premium massage therapy with absolute discretion.</p>
-                    <div class="footer-secure">
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
-                        </svg>
-                        100% Confidential & Secure
+                    <div class="logo" style="color: white; margin-bottom: 15px;">
+                        <i class="fas fa-spa"></i>
+                        <span>Harmony Wellness</span>
                     </div>
+                    <p>Premium massage therapy delivered with discretion and professionalism.</p>
                 </div>
-                <div class="footer-links">
-                    <h4 class="footer-title">Quick Links</h4>
-                    <nav aria-label="Footer Navigation">
-                        <a href="index.html">Home</a>
-                        <a href="therapists.html">Our Therapists</a>
-                        <a href="services.html">Services</a>
-                        <a href="support.html">Support</a>
-                    </nav>
+                <div class="footer-links-col">
+                    <h4>Services</h4>
+                    <ul>
+                        <li><a href="services.html">Standard Massage</a></li>
+                        <li><a href="services.html">Nuru Massage</a></li>
+                        <li><a href="services.html">Couples Experience</a></li>
+                    </ul>
                 </div>
-                <div class="footer-links">
-                    <h4 class="footer-title">Legal</h4>
-                    <nav aria-label="Legal Navigation">
-                        <a href="#" onclick="alert('Privacy Policy placeholder'); return false;">Privacy Policy</a>
-                        <a href="#" onclick="alert('Terms of Service placeholder'); return false;">Terms of Service</a>
-                    </nav>
-                </div>
-                <div class="footer-contact">
-                    <h4 class="footer-title">Support</h4>
-                    <p>Visit our <a href="support.html">Support Center</a></p>
+                <div class="footer-links-col">
+                    <h4>Support</h4>
+                    <ul>
+                        <li><a href="support.html">Contact Us</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                    </ul>
                 </div>
             </div>
             <div class="footer-bottom">
-                <p class="copyright">&copy; 2026 Harmony Wellness. All rights reserved.</p>
-                <p class="footer-note">No personal data stored beyond essentials. Manual verification ensures maximum privacy.</p>
+                <p>&copy; 2026 Harmony Wellness. All rights reserved.</p>
             </div>
         </div>
     </footer>
 
-    <!-- Floating Book Now Button -->
-    <a href="checkout.html" class="floating-cta" aria-label="Book Now">
-        <span>Book Now</span>
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <line x1="5" y1="12" x2="19" y2="12"></line>
-            <polyline points="12 5 19 12 12 19"></polyline>
-        </svg>
-    </a>
-
     <script src="script.js"></script>
+    <script>
+        function bookWith(therapistName) {
+            const refCode = 'HW-' + Math.random().toString(36).substr(2, 6).toUpperCase();
+            window.location.href = 'checkout.html?therapist=' + encodeURIComponent(therapistName) + '&refcode=' + refCode;
+        }
+    </script>
 </body>
 </html>
