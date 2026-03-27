@@ -382,7 +382,7 @@
 
                 <!-- Contact Section -->
                 <div class="contact-section">
-                                      <!-- Contact Methods -->
+                                                          <!-- Contact Methods -->
                     <div class="contact-card">
                         <h3>
                             <i class="fas fa-headset"></i>
@@ -423,18 +423,60 @@
                         </div>
                     </div>
 
-                    <!-- Tally Contact Form -->
+                    <!-- Web3forms Contact Form -->
                     <div class="contact-card">
                         <h3>
                             <i class="fas fa-paper-plane"></i>
                             Send Message
                         </h3>
-                        <!-- Replace YOUR_TALLY_FORM_ID with your actual Tally form ID -->
-                        <iframe 
-                            src="https://tally.so/embed/YOUR_TALLY_FORM_ID?alignLeft=1&hideTitle=1&transparentBackground=1&dynamicHeight=1" 
-                            class="tally-embed"
-                            title="Contact Form">
-                        </iframe>
+                        
+                        <form id="support-form" class="web3forms-form">
+                            <!-- Web3forms Access Key -->
+                            <input type="hidden" name="access_key" value="c417cc6f-33c6-4083-85b4-29af8c8f5258">
+                            
+                            <!-- Honeypot for spam protection -->
+                            <input type="checkbox" name="botcheck" class="hidden" style="display: none;">
+                            
+                            <div class="form-group">
+                                <label class="form-label" for="support-name">Your Name</label>
+                                <input type="text" id="support-name" name="name" class="form-input" placeholder="John Doe" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label class="form-label" for="support-email">Email Address</label>
+                                <input type="email" id="support-email" name="email" class="form-input" placeholder="john@example.com" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label class="form-label" for="support-subject">Subject</label>
+                                <select id="support-subject" name="subject" class="form-select" required>
+                                    <option value="">Select a topic...</option>
+                                    <option value="Booking Question">Booking Question</option>
+                                    <option value="Payment Issue">Payment Issue</option>
+                                    <option value="Modify/Cancel Booking">Modify/Cancel Booking</option>
+                                    <option value="General Inquiry">General Inquiry</option>
+                                    <option value="Privacy Concern">Privacy Concern</option>
+                                </select>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label class="form-label" for="support-message">Message</label>
+                                <textarea id="support-message" name="message" class="form-textarea" rows="4" placeholder="How can we help you?" required></textarea>
+                            </div>
+                            
+                            <button type="submit" class="btn-primary" style="width: 100%;">
+                                <span class="btn-text">Send Message</span>
+                                <span class="btn-loader" style="display: none;">
+                                    <i class="fas fa-spinner fa-spin"></i> Sending...
+                                </span>
+                            </button>
+                        </form>
+                        
+                        <div id="form-success" style="display: none; margin-top: 20px; padding: 15px; background: #d1fae5; border-radius: 8px; color: #065f46; text-align: center;">
+                            <i class="fas fa-check-circle" style="font-size: 2rem; margin-bottom: 10px;"></i>
+                            <p style="margin: 0; font-weight: 500;">Message sent successfully!</p>
+                            <p style="margin: 5px 0 0; font-size: 0.9rem;">We'll respond within 2 hours.</p>
+                        </div>
                     </div>
                 </div>
 
@@ -503,6 +545,58 @@
             // Toggle current
             element.classList.toggle('active');
         }
+        
+        // Web3forms Support Form Handler
+        document.getElementById('support-form').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const form = this;
+            const submitBtn = form.querySelector('button[type="submit"]');
+            const btnText = submitBtn.querySelector('.btn-text');
+            const btnLoader = submitBtn.querySelector('.btn-loader');
+            const successDiv = document.getElementById('form-success');
+            
+            // Show loading state
+            submitBtn.disabled = true;
+            btnText.style.display = 'none';
+            btnLoader.style.display = 'inline';
+            
+            try {
+                const formData = new FormData(form);
+                
+                const response = await fetch('https://api.web3forms.com/submit', {
+                    method: 'POST',
+                    body: formData
+                });
+                
+                const data = await response.json();
+                
+                if (data.success) {
+                    // Show success message
+                    form.style.display = 'none';
+                    successDiv.style.display = 'block';
+                    
+                    // Reset form after delay
+                    setTimeout(() => {
+                        form.reset();
+                        form.style.display = 'block';
+                        successDiv.style.display = 'none';
+                        submitBtn.disabled = false;
+                        btnText.style.display = 'inline';
+                        btnLoader.style.display = 'none';
+                    }, 5000);
+                } else {
+                    throw new Error(data.message || 'Form submission failed');
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                alert('Failed to send message. Please try again or email us directly at support@harmonywellness.pro');
+                
+                submitBtn.disabled = false;
+                btnText.style.display = 'inline';
+                btnLoader.style.display = 'none';
+            }
+        });
     </script>
 </body>
 </html>
