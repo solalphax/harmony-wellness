@@ -726,7 +726,7 @@
             </div>
         </div>
     </div>
-        <!-- Footer -->
+              <!-- Footer -->
     <footer>
         <div class="footer-content">
             <div class="footer-section">
@@ -991,9 +991,10 @@
             localStorage.setItem('harmony_booking', JSON.stringify(bookingState));
         }
         
-        // Submit booking
+        // Submit booking and redirect to payment page
         function submitBooking(event) {
             event.preventDefault();
+            event.stopPropagation();
             
             // Validation
             if (!bookingState.service || bookingState.basePrice === 0) {
@@ -1025,12 +1026,10 @@
             // Save complete booking
             localStorage.setItem('harmony_completed_booking', JSON.stringify(formData));
             
-            // Show success and redirect
-            showAlert('Booking submitted successfully! Redirecting to confirmation...', 'success');
+            // Redirect to payment page
+            window.location.href = 'payment.html';
             
-            setTimeout(function() {
-                window.location.href = 'confirmation.html';
-            }, 1500);
+            return false;
         }
         
         // Show alert message
