@@ -3,522 +3,621 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Explore our premium massage services. Real-time pricing with instant booking.">
     <title>Our Services | Harmony Wellness</title>
-    
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="style.css">
-    
     <style>
-        .service-calculator {
-            background: white;
-            border-radius: 16px;
-            padding: 30px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
-            margin-top: 20px;
+        :root {
+            --primary: #1a3a2f;
+            --primary-light: #2d5a4a;
+            --accent: #c9a962;
+            --accent-light: #d4b978;
+            --bg-cream: #faf8f5;
+            --bg-light: #f5f3f0;
+            --text-dark: #2c2c2c;
+            --text-muted: #6b6b6b;
+            --white: #ffffff;
+            --shadow: 0 4px 20px rgba(0,0,0,0.08);
+            --shadow-hover: 0 8px 30px rgba(0,0,0,0.12);
         }
-        .calc-row {
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-cream);
+            color: var(--text-dark);
+            line-height: 1.6;
+        }
+        
+        h1, h2, h3, h4 {
+            font-family: 'Playfair Display', serif;
+        }
+        
+        /* Navigation */
+        nav {
+            position: sticky;
+            top: 0;
+            background: rgba(255,255,255,0.98);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+            z-index: 1000;
+            padding: 1rem 0;
+        }
+        
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 15px 0;
-            border-bottom: 1px solid #e5e7eb;
         }
-        .calc-row:last-child {
-            border-bottom: none;
-            font-size: 1.3rem;
+        
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
             font-weight: 600;
-            color: #0f766e;
+            color: var(--primary);
+            text-decoration: none;
         }
-        .duration-select {
-            padding: 10px 20px;
-            border: 2px solid #e5e7eb;
-            border-radius: 8px;
-            font-size: 1rem;
-            cursor: pointer;
+        
+        .logo span {
+            color: var(--accent);
         }
-        .addon-toggle {
+        
+        .nav-links {
             display: flex;
-            align-items: center;
-            gap: 10px;
+            gap: 2.5rem;
+            list-style: none;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: color 0.3s;
+            position: relative;
+        }
+        
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: var(--primary);
+        }
+        
+        .nav-links a.active::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: var(--accent);
+        }
+        
+        .mobile-menu {
+            display: none;
+            font-size: 1.5rem;
             cursor: pointer;
         }
-        .toggle-switch {
-            width: 50px;
-            height: 26px;
-            background: #e5e7eb;
-            border-radius: 13px;
-            position: relative;
-            transition: 0.3s;
-        }
-        .toggle-switch.active {
-            background: #14b8a6;
-        }
-        .toggle-slider {
-            width: 22px;
-            height: 22px;
-            background: white;
-            border-radius: 50%;
-            position: absolute;
-            top: 2px;
-            left: 2px;
-            transition: 0.3s;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
-        }
-        .toggle-switch.active .toggle-slider {
-            left: 26px;
-        }
-        .book-btn {
-            width: 100%;
-            margin-top: 20px;
-            padding: 16px;
-            font-size: 1.1rem;
+        
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: var(--white);
+                flex-direction: column;
+                padding: 1rem;
+                gap: 1rem;
+                box-shadow: var(--shadow);
+            }
+            
+            .nav-links.active {
+                display: flex;
+            }
+            
+            .mobile-menu {
+                display: block;
+            }
         }
     </style>
 </head>
 <body>
-    <!-- Navigation -->
-    <nav class="main-nav">
-        <div class="container">
-            <div class="nav-wrapper">
-                <a href="index.html" class="logo">
-                    <i class="fas fa-spa"></i>
-                    <span>Harmony Wellness</span>
-                </a>
-                <ul class="nav-links">
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="services.html" class="active">Services</a></li>
-                    <li><a href="therapists.html">Therapists</a></li>
-                    <li><a href="support.html">Support</a></li>
-                </ul>
-                <a href="checkout.html" class="btn-nav">Book Now</a>
-                <button class="mobile-menu-toggle" onclick="toggleMobileMenu()">
-                    <i class="fas fa-bars"></i>
-                </button>
+    <nav>
+        <div class="nav-container">
+            <a href="index.html" class="logo">Harmony <span>Wellness</span></a>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="services.html" class="active">Services</a></li>
+                <li><a href="therapists.html">Therapists</a></li>
+                <li><a href="support.html">Support</a></li>
+                <li><a href="checkout.html">Book Now</a></li>
+            </ul>
+            <div class="mobile-menu" onclick="toggleNav()">
+                <i class="fas fa-bars"></i>
             </div>
         </div>
     </nav>
-        <!-- Services Section -->
-    <section class="section-light" style="padding-top: 120px;">
-        <div class="container">
-            <div class="section-header">
-                <span class="section-subtitle">Pricing</span>
-                <h2 class="section-title">Our Services</h2>
-                <p class="section-description">Real-time pricing calculator. Select your preferences to see exact totals.</p>
-            </div>
-
-            <!-- Standard Massage -->
-            <div class="service-full-card" id="standard">
-                <div class="service-header">
-                    <div class="service-icon-large">
-                        <i class="fas fa-hands"></i>
-                    </div>
-                    <div class="service-title-block">
-                        <h3>Standard Massage</h3>
-                        <p>Swedish, Deep Tissue, or Hot Stone</p>
-                    </div>
-                </div>
-                
-                <div class="service-calculator" data-service-type="standard">
-                    <div class="calc-row">
-                        <span>Duration</span>
-                        <select class="duration-select" onchange="calculateTotal(this)">
-                            <option value="60" data-base="110">60 minutes - $110</option>
-                            <option value="90" data-base="160">90 minutes - $160</option>
-                            <option value="120" data-base="210">120 minutes - $210</option>
-                            <option value="240" data-base="380">Half Day (4 hrs) - $380</option>
-                            <option value="480" data-base="680">Overnight (8 hrs) - $680</option>
-                        </select>
-                    </div>
-                    <div class="calc-row">
-                        <span class="addon-toggle" onclick="toggleAddon(this)">
-                            <div class="toggle-switch">
-                                <div class="toggle-slider"></div>
-                            </div>
-                            <span>Happy Ending (+$<span class="addon-price">150</span>)</span>
-                        </span>
-                        <span style="color: #6b7280; font-size: 0.9rem;">Optional</span>
-                    </div>
-                    <div class="calc-row">
-                        <span>Total</span>
-                        <span class="total-price">$110</span>
-                    </div>
-                    <button class="btn-primary book-btn" onclick="bookService(this)">
-                        Book This Service
-                        <i class="fas fa-arrow-right"></i>
-                    </button>
-                </div>
-            </div>
-
-            <!-- Nuru Massage -->
-            <div class="service-full-card" id="nuru" style="margin-top: 40px;">
-                <div class="service-header">
-                    <div class="service-icon-large" style="background: linear-gradient(135deg, #14b8a6 0%, #0f766e 100%);">
-                        <i class="fas fa-water"></i>
-                    </div>
-                    <div class="service-title-block">
-                        <h3>Nuru Massage <span class="badge-signature">Signature</span></h3>
-                        <p>Authentic Japanese full-body experience</p>
-                    </div>
-                </div>
-                
-                <div class="service-calculator" data-service-type="nuru">
-                    <div class="calc-row">
-                        <span>Duration</span>
-                        <select class="duration-select" onchange="calculateTotal(this)">
-                            <option value="60" data-base="220">60 minutes - $220</option>
-                            <option value="90" data-base="320">90 minutes - $320</option>
-                            <option value="120" data-base="420">120 minutes - $420</option>
-                            <option value="240" data-base="750">Half Day (4 hrs) - $750</option>
-                            <option value="480" data-base="1200">Overnight (8 hrs) - $1200</option>
-                        </select>
-                    </div>
-                    <div class="calc-row">
-                        <span class="addon-toggle" onclick="toggleAddon(this)">
-                            <div class="toggle-switch">
-                                <div class="toggle-slider"></div>
-                            </div>
-                            <span>Happy Ending (+$<span class="addon-price">150</span>)</span>
-                        </span>
-                        <span style="color: #6b7280; font-size: 0.9rem;">Optional</span>
-                    </div>
-                    <div class="calc-row">
-                        <span>Total</span>
-                        <span class="total-price">$220</span>
-                    </div>
-                    <button class="btn-primary book-btn" onclick="bookService(this)">
-                        Book This Service
-                        <i class="fas fa-arrow-right"></i>
-                    </button>
-                </div>
-            </div>
-                        <!-- Couples Massage -->
-            <div class="service-full-card" id="couples" style="margin-top: 40px;">
-                <div class="service-header">
-                    <div class="service-icon-large" style="background: linear-gradient(135deg, #ec4899 0%, #be185d 100%);">
-                        <i class="fas fa-heart"></i>
-                    </div>
-                    <div class="service-title-block">
-                        <h3>Couples Experience</h3>
-                        <p>Side-by-side treatments in private suite</p>
-                    </div>
-                </div>
-                
-                <div class="service-calculator" data-service-type="couples">
-                    <div class="calc-row">
-                        <span>Duration</span>
-                        <select class="duration-select" onchange="calculateTotal(this)">
-                            <option value="60" data-base="280">60 minutes - $280</option>
-                            <option value="90" data-base="380">90 minutes - $380</option>
-                            <option value="120" data-base="480">120 minutes - $480</option>
-                        </select>
-                    </div>
-                    <div class="calc-row">
-                        <span class="addon-toggle" onclick="toggleAddon(this)">
-                            <div class="toggle-switch">
-                                <div class="toggle-slider"></div>
-                            </div>
-                            <span>Happy Ending (+$<span class="addon-price">300</span>)</span>
-                        </span>
-                        <span style="color: #6b7280; font-size: 0.9rem;">Per couple</span>
-                    </div>
-                    <div class="calc-row">
-                        <span>Total</span>
-                        <span class="total-price">$280</span>
-                    </div>
-                    <button class="btn-primary book-btn" onclick="bookService(this)">
-                        Book This Service
-                        <i class="fas fa-arrow-right"></i>
-                    </button>
-                </div>
-            </div>
+        <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Our Signature Services</h1>
+            <p>Experience transformative wellness treatments tailored to your unique needs</p>
         </div>
     </section>
 
-    <!-- Footer -->
-    <footer class="main-footer">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-brand">
-                    <div class="logo" style="color: white; margin-bottom: 15px;">
-                        <i class="fas fa-spa"></i>
-                        <span>Harmony Wellness</span>
-                    </div>
-                    <p>Premium massage therapy delivered with discretion and professionalism.</p>
-                </div>
-                <div class="footer-links-col">
-                    <h4>Quick Links</h4>
-                    <ul>
-                        <li><a href="index.html">Home</a></li>
-                        <li><a href="therapists.html">Therapists</a></li>
-                        <li><a href="support.html">Support</a></li>
-                    </ul>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <p>&copy; 2026 Harmony Wellness. All rights reserved.</p>
-            </div>
+    <style>
+        .hero {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+            color: var(--white);
+            padding: 5rem 2rem;
+            text-align: center;
+        }
+        
+        .hero-content h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            font-weight: 500;
+        }
+        
+        .hero-content p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        @media (max-width: 768px) {
+            .hero-content h1 {
+                font-size: 2rem;
+            }
+        }
+        
+        /* Services Section */
+        .services-section {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+        }
+        
+        .section-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        
+        .section-header h2 {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+        
+        .section-header p {
+            color: var(--text-muted);
+            font-size: 1.1rem;
+        }
+        
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+        
+        .service-card {
+            background: var(--white);
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: all 0.3s ease;
+            border: 1px solid rgba(0,0,0,0.05);
+        }
+        
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-hover);
+        }
+        
+        .service-image {
+            height: 200px;
+            background: linear-gradient(135deg, var(--primary-light) 0%, var(--primary) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            font-size: 3rem;
+        }
+        
+        .service-content {
+            padding: 2rem;
+        }
+        
+        .service-content h3 {
+            font-size: 1.5rem;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+        
+        .service-content .subtitle {
+            color: var(--accent);
+            font-weight: 500;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+            display: block;
+        }
+        
+        .service-content p {
+            color: var(--text-muted);
+            margin-bottom: 1.5rem;
+            line-height: 1.7;
+        }
+        
+        .service-features {
+            list-style: none;
+            margin-bottom: 1.5rem;
+        }
+        
+        .service-features li {
+            padding: 0.3rem 0;
+            color: var(--text-dark);
+            font-size: 0.95rem;
+        }
+        
+        .service-features li i {
+            color: var(--accent);
+            margin-right: 0.5rem;
+        }
+        
+        .price-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(0,0,0,0.05);
+        }
+        
+        .price {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--primary);
+        }
+        
+        .duration-select {
+            padding: 0.5rem 1rem;
+            border: 1px solid var(--primary);
+            border-radius: 8px;
+            background: var(--white);
+            color: var(--primary);
+            font-family: 'Inter', sans-serif;
+            cursor: pointer;
+            margin-right: 0.5rem;
+        }
+        
+        .btn-primary {
+            background: var(--primary);
+            color: var(--white);
+            border: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: 8px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+            display: inline-block;
+        }
+        
+        .btn-primary:hover {
+            background: var(--primary-light);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(26,58,47,0.3);
+        }
+    </style>
+        <section class="services-section">
+        <div class="section-header">
+            <h2>Massage & Bodywork</h2>
+            <p>Choose your perfect treatment duration</p>
         </div>
-    </footer>
+        
+        <div class="services-grid">
+            <!-- Swedish Massage -->
+            <div class="service-card" data-service="swedish" data-base-price="120">
+                <div class="service-image">
+                    <i class="fas fa-spa"></i>
+                </div>
+                <div class="service-content">
+                    <h3>Swedish Massage</h3>
+                    <span class="subtitle">Relaxation & Stress Relief</span>
+                    <p>Classic full-body massage using long, flowing strokes to promote relaxation and improve circulation.</p>
+                    <ul class="service-features">
+                        <li><i class="fas fa-check"></i> Full body treatment</li>
+                        <li><i class="fas fa-check"></i> Aromatherapy included</li>
+                        <li><i class="fas fa-check"></i> Hot towel therapy</li>
+                    </ul>
+                    <div class="price-row">
+                        <span class="price" id="price-swedish">$120</span>
+                        <div>
+                            <select class="duration-select" onchange="updatePrice('swedish', this.value)">
+                                <option value="60" data-multiplier="1">60 min</option>
+                                <option value="90" data-multiplier="1.4">90 min</option>
+                                <option value="120" data-multiplier="1.8">120 min</option>
+                            </select>
+                            <button class="btn-primary" onclick="bookService('swedish')">Book This Service</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
-    <script src="script.js"></script>
-    <script>
-        // Price calculation logic
-        const addonPrices = {
-            '60': 150,
-            '90': 150,
-            '120': 150,
-            '240': 250,
-            '480': 400
-        };
-        
-        const couplesAddon = {
-            '60': 300,
-            '90': 300,
-            '120': 300
-        };
-        
-        function calculateTotal(selectEl) {
-            const calculator = selectEl.closest('.service-calculator');
-            const selected = selectEl.options[selectEl.selectedIndex];
-            const basePrice = parseInt(selected.dataset.base);
-            const duration = selected.value;
-            const serviceType = calculator.dataset.serviceType;
-            
-            // Check if addon is active
-            const toggle = calculator.querySelector('.toggle-switch');
-            const isAddon = toggle.classList.contains('active');
-            
-            // Get addon price
-            let addonPrice = 0;
-            if (isAddon) {
-                addonPrice = serviceType === 'couples' ? 
-                    (couplesAddon[duration] || 300) : 
-                    (addonPrices[duration] || 150);
-            }
-            
-            const total = basePrice + addonPrice;
-            calculator.querySelector('.total-price').textContent = '$' + total;
-            
-            // Update addon price display
-            const addonDisplay = calculator.querySelector('.addon-price');
-            if (addonDisplay) {
-                addonDisplay.textContent = addonPrice;
-            }
-        }
-        
-        function toggleAddon(toggleEl) {
-            const switchEl = toggleEl.querySelector('.toggle-switch');
-            switchEl.classList.toggle('active');
-            
-            // Recalculate
-            const calculator = toggleEl.closest('.service-calculator');
-            const select = calculator.querySelector('.duration-select');
-            calculateTotal(select);
-        }
-        
-        function bookService(btnEl) {
-            const calculator = btnEl.closest('.service-calculator');
-            const serviceType = calculator.dataset.serviceType;
-            const select = calculator.querySelector('.duration-select');
-            const duration = select.value;
-            const basePrice = parseInt(select.options[select.selectedIndex].dataset.base);
-            const isAddon = calculator.querySelector('.toggle-switch').classList.contains('active');
-            
-            // Calculate total again to be sure
-            let addonPrice = 0;
-            if (isAddon) {
-                addonPrice = serviceType === 'couples' ? 
-                    (couplesAddon[duration] || 300) : 
-                    (addonPrices[duration] || 150);
-            }
-            const total = basePrice + addonPrice;
-            
-            // Build URL params
-            const params = new URLSearchParams({
-                service: serviceType,
-                duration: duration,
-                addon: isAddon,
-                price: total,
-                refcode: 'HW-' + Math.random().toString(36).substr(2, 6).toUpperCase()
-            });
-            
-            // Redirect to checkout
-            window.location.href = 'checkout.html?' + params.toString();
-        }
-        
-        // Initialize on load
-        document.addEventListener('DOMContentLoaded', () => {
-            document.querySelectorAll('.duration-select').forEach(select => {
-                calculateTotal(select);
-            });
-        });
-    </script>
-</body>
-</html>
+            <!-- Deep Tissue -->
+            <div class="service-card" data-service="deeptissue" data-base-price="140">
+                <div class="service-image">
+                    <i class="fas fa-hand-holding-heart"></i>
+                </div>
+                <div class="service-content">
+                    <h3>Deep Tissue Massage</h3>
+                    <span class="subtitle">Therapeutic & Healing</span>
+                    <p>Targeted pressure to release chronic muscle tension and address specific problem areas.</p>
+                    <ul class="service-features">
+                        <li><i class="fas fa-check"></i> Trigger point therapy</li>
+                        <li><i class="fas fa-check"></i> Myofascial release</li>
+                        <li><i class="fas fa-check"></i> Focused pressure work</li>
+                    </ul>
+                    <div class="price-row">
+                        <span class="price" id="price-deeptissue">$140</span>
+                        <div>
+                            <select class="duration-select" onchange="updatePrice('deeptissue', this.value)">
+                                <option value="60" data-multiplier="1">60 min</option>
+                                <option value="90" data-multiplier="1.4">90 min</option>
+                                <option value="120" data-multiplier="1.8">120 min</option>
+                            </select>
+                            <button class="btn-primary" onclick="bookService('deeptissue')">Book This Service</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Hot Stone -->
+            <div class="service-card" data-service="hotstone" data-base-price="160">
+                <div class="service-image">
+                    <i class="fas fa-fire"></i>
+                </div>
+                <div class="service-content">
+                    <h3>Hot Stone Therapy</h3>
+                    <span class="subtitle">Deep Relaxation</span>
+                    <p>Heated basalt stones melt away tension while promoting deep muscle relaxation.</p>
+                    <ul class="service-features">
+                        <li><i class="fas fa-check"></i> Heated volcanic stones</li>
+                        <li><i class="fas fa-check"></i> Chakra balancing</li>
+                        <li><i class="fas fa-check"></i> Essential oil blend</li>
+                    </ul>
+                    <div class="price-row">
+                        <span class="price" id="price-hotstone">$160</span>
+                        <div>
+                            <select class="duration-select" onchange="updatePrice('hotstone', this.value)">
+                                <option value="60" data-multiplier="1">60 min</option>
+                                <option value="90" data-multiplier="1.4">90 min</option>
+                                <option value="120" data-multiplier="1.8">120 min</option>
+                            </select>
+                            <button class="btn-primary" onclick="bookService('hotstone')">Book This Service</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Aromatherapy -->
+            <div class="service-card" data-service="aroma" data-base-price="130">
+                <div class="service-image">
+                    <i class="fas fa-leaf"></i>
+                </div>
+                <div class="service-content">
+                    <h3>Aromatherapy Massage</h3>
+                    <span class="subtitle">Sensory Journey</span>
+                    <p>Custom essential oil blends combined with gentle massage for holistic healing.</p>
+                    <ul class="service-features">
+                        <li><i class="fas fa-check"></i> Custom oil blending</li>
+                        <li><i class="fas fa-check"></i> Inhalation therapy</li>
+                        <li><i class="fas fa-check"></i> Take-home sample</li>
+                    </ul>
+                    <div class="price-row">
+                        <span class="price" id="price-aroma">$130</span>
+                        <div>
+                            <select class="duration-select" onchange="updatePrice('aroma', this.value)">
+                                <option value="60" data-multiplier="1">60 min</option>
+                                <option value="90" data-multiplier="1.4">90 min</option>
+                                <option value="120" data-multiplier="1.8">120 min</option>
+                            </select>
+                            <button class="btn-primary" onclick="bookService('aroma')">Book This Service</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sports Massage -->
+            <div class="service-card" data-service="sports" data-base-price="150">
+                <div class="service-image">
+                    <i class="fas fa-running"></i>
+                </div>
+                <div class="service-content">
+                    <h3>Sports Massage</h3>
+                    <span class="subtitle">Performance & Recovery</span>
+                    <p>Designed for athletes to enhance performance and speed up recovery time.</p>
+                    <ul class="service-features">
+                        <li><i class="fas fa-check"></i> Pre/post event options</li>
+                        <li><i class="fas fa-check"></i> Stretching included</li>
+                        <li><i class="fas fa-check"></i> Injury prevention</li>
+                    </ul>
+                    <div class="price-row">
+                        <span class="price" id="price-sports">$150</span>
+                        <div>
+                            <select class="duration-select" onchange="updatePrice('sports', this.value)">
+                                <option value="60" data-multiplier="1">60 min</option>
+                                <option value="90" data-multiplier="1.4">90 min</option>
+                                <option value="120" data-multiplier="1.8">120 min</option>
+                            </select>
+                            <button class="btn-primary" onclick="bookService('sports')">Book This Service</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
             <!-- Couples Massage -->
-            <div class="service-full-card" id="couples" style="margin-top: 40px;">
-                <div class="service-header">
-                    <div class="service-icon-large" style="background: linear-gradient(135deg, #ec4899 0%, #be185d 100%);">
-                        <i class="fas fa-heart"></i>
-                    </div>
-                    <div class="service-title-block">
-                        <h3>Couples Experience</h3>
-                        <p>Side-by-side treatments in private suite</p>
-                    </div>
+            <div class="service-card" data-service="couples" data-base-price="240">
+                <div class="service-image">
+                    <i class="fas fa-heart"></i>
                 </div>
-                
-                <div class="service-calculator" data-service-type="couples">
-                    <div class="calc-row">
-                        <span>Duration</span>
-                        <select class="duration-select" onchange="calculateTotal(this)">
-                            <option value="60" data-base="280">60 minutes - $280</option>
-                            <option value="90" data-base="380">90 minutes - $380</option>
-                            <option value="120" data-base="480">120 minutes - $480</option>
-                        </select>
+                <div class="service-content">
+                    <h3>Couples Massage</h3>
+                    <span class="subtitle">Shared Experience</span>
+                    <p>Side-by-side massage experience in our private couples suite with champagne.</p>
+                    <ul class="service-features">
+                        <li><i class="fas fa-check"></i> Private couples suite</li>
+                        <li><i class="fas fa-check"></i> Complimentary champagne</li>
+                        <li><i class="fas fa-check"></i> Chocolate truffles</li>
+                    </ul>
+                    <div class="price-row">
+                        <span class="price" id="price-couples">$240</span>
+                        <div>
+                            <select class="duration-select" onchange="updatePrice('couples', this.value)">
+                                <option value="60" data-multiplier="1">60 min</option>
+                                <option value="90" data-multiplier="1.4">90 min</option>
+                                <option value="120" data-multiplier="1.8">120 min</option>
+                            </select>
+                            <button class="btn-primary" onclick="bookService('couples')">Book This Service</button>
+                        </div>
                     </div>
-                    <div class="calc-row">
-                        <span class="addon-toggle" onclick="toggleAddon(this)">
-                            <div class="toggle-switch">
-                                <div class="toggle-slider"></div>
-                            </div>
-                            <span>Happy Ending (+$<span class="addon-price">300</span>)</span>
-                        </span>
-                        <span style="color: #6b7280; font-size: 0.9rem;">Per couple</span>
-                    </div>
-                    <div class="calc-row">
-                        <span>Total</span>
-                        <span class="total-price">$280</span>
-                    </div>
-                    <button class="btn-primary book-btn" onclick="bookService(this)">
-                        Book This Service
-                        <i class="fas fa-arrow-right"></i>
-                    </button>
                 </div>
             </div>
         </div>
     </section>
-
-    <!-- Footer -->
-    <footer class="main-footer">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-brand">
-                    <div class="logo" style="color: white; margin-bottom: 15px;">
-                        <i class="fas fa-spa"></i>
-                        <span>Harmony Wellness</span>
-                    </div>
-                    <p>Premium massage therapy delivered with discretion and professionalism.</p>
-                </div>
-                <div class="footer-links-col">
-                    <h4>Quick Links</h4>
-                    <ul>
-                        <li><a href="index.html">Home</a></li>
-                        <li><a href="therapists.html">Therapists</a></li>
-                        <li><a href="support.html">Support</a></li>
-                    </ul>
-                </div>
+        <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>Harmony Wellness</h4>
+                <p>Your journey to relaxation and rejuvenation starts here.</p>
             </div>
-            <div class="footer-bottom">
-                <p>&copy; 2026 Harmony Wellness. All rights reserved.</p>
+            <div class="footer-section">
+                <h4>Contact</h4>
+                <p><i class="fas fa-phone"></i> (555) 123-4567</p>
+                <p><i class="fas fa-envelope"></i> info@harmonywellness.com</p>
             </div>
+            <div class="footer-section">
+                <h4>Hours</h4>
+                <p>Mon-Sat: 9AM - 9PM</p>
+                <p>Sunday: 10AM - 6PM</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Harmony Wellness. All rights reserved.</p>
         </div>
     </footer>
 
-    <script src="script.js"></script>
+    <style>
+        footer {
+            background: var(--primary);
+            color: var(--white);
+            padding: 3rem 2rem 1rem;
+            margin-top: 4rem;
+        }
+        
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .footer-section h4 {
+            font-family: 'Playfair Display', serif;
+            margin-bottom: 1rem;
+            color: var(--accent-light);
+        }
+        
+        .footer-section p {
+            opacity: 0.9;
+            margin-bottom: 0.5rem;
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            opacity: 0.7;
+        }
+    </style>
+
     <script>
-        // Price calculation logic
-        const addonPrices = {
-            '60': 150,
-            '90': 150,
-            '120': 150,
-            '240': 250,
-            '480': 400
-        };
-        
-        const couplesAddon = {
-            '60': 300,
-            '90': 300,
-            '120': 300
-        };
-        
-        function calculateTotal(selectEl) {
-            const calculator = selectEl.closest('.service-calculator');
-            const selected = selectEl.options[selectEl.selectedIndex];
-            const basePrice = parseInt(selected.dataset.base);
-            const duration = selected.value;
-            const serviceType = calculator.dataset.serviceType;
-            
-            // Check if addon is active
-            const toggle = calculator.querySelector('.toggle-switch');
-            const isAddon = toggle.classList.contains('active');
-            
-            // Get addon price
-            let addonPrice = 0;
-            if (isAddon) {
-                addonPrice = serviceType === 'couples' ? 
-                    (couplesAddon[duration] || 300) : 
-                    (addonPrices[duration] || 150);
-            }
-            
-            const total = basePrice + addonPrice;
-            calculator.querySelector('.total-price').textContent = '$' + total;
-            
-            // Update addon price display
-            const addonDisplay = calculator.querySelector('.addon-price');
-            if (addonDisplay) {
-                addonDisplay.textContent = addonPrice;
-            }
+        // Mobile Navigation
+        function toggleNav() {
+            document.getElementById('navLinks').classList.toggle('active');
         }
         
-        function toggleAddon(toggleEl) {
-            const switchEl = toggleEl.querySelector('.toggle-switch');
-            switchEl.classList.toggle('active');
+        // Price Update Function
+        function updatePrice(service, duration) {
+            const card = document.querySelector(`[data-service="${service}"]`);
+            const basePrice = parseInt(card.dataset.basePrice);
+            const select = card.querySelector('.duration-select');
+            const selectedOption = select.options[select.selectedIndex];
+            const multiplier = parseFloat(selectedOption.dataset.multiplier);
             
-            // Recalculate
-            const calculator = toggleEl.closest('.service-calculator');
-            const select = calculator.querySelector('.duration-select');
-            calculateTotal(select);
+            const newPrice = Math.round(basePrice * multiplier);
+            document.getElementById(`price-${service}`).textContent = `$${newPrice}`;
         }
         
-        function bookService(btnEl) {
-            const calculator = btnEl.closest('.service-calculator');
-            const serviceType = calculator.dataset.serviceType;
-            const select = calculator.querySelector('.duration-select');
+        // Book Service Function - Redirects to checkout with parameters
+        function bookService(service) {
+            const card = document.querySelector(`[data-service="${service}"]`);
+            const basePrice = parseInt(card.dataset.basePrice);
+            const select = card.querySelector('.duration-select');
+            const selectedOption = select.options[select.selectedIndex];
             const duration = select.value;
-            const basePrice = parseInt(select.options[select.selectedIndex].dataset.base);
-            const isAddon = calculator.querySelector('.toggle-switch').classList.contains('active');
+            const multiplier = parseFloat(selectedOption.dataset.multiplier);
+            const price = Math.round(basePrice * multiplier);
             
-            // Calculate total again to be sure
-            let addonPrice = 0;
-            if (isAddon) {
-                addonPrice = serviceType === 'couples' ? 
-                    (couplesAddon[duration] || 300) : 
-                    (addonPrices[duration] || 150);
-            }
-            const total = basePrice + addonPrice;
+            // Get service name
+            const serviceName = card.querySelector('h3').textContent;
             
-            // Build URL params
+            // Build checkout URL with parameters
             const params = new URLSearchParams({
-                service: serviceType,
+                service: service,
+                serviceName: serviceName,
                 duration: duration,
-                addon: isAddon,
-                price: total,
-                refcode: 'HW-' + Math.random().toString(36).substr(2, 6).toUpperCase()
+                price: price,
+                source: 'services'
             });
+            
+            // Save to localStorage as fallback
+            const bookingData = {
+                service: service,
+                serviceName: serviceName,
+                duration: duration,
+                price: price,
+                addon: false,
+                addonPrice: 0,
+                therapist: '',
+                source: 'services',
+                timestamp: new Date().toISOString()
+            };
+            localStorage.setItem('harmony_booking', JSON.stringify(bookingData));
             
             // Redirect to checkout
-            window.location.href = 'checkout.html?' + params.toString();
+            window.location.href = `checkout.html?${params.toString()}`;
         }
         
-        // Initialize on load
-        document.addEventListener('DOMContentLoaded', () => {
-            document.querySelectorAll('.duration-select').forEach(select => {
-                calculateTotal(select);
-            });
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', function(e) {
+            const nav = document.querySelector('nav');
+            const navLinks = document.getElementById('navLinks');
+            if (!nav.contains(e.target) && navLinks.classList.contains('active')) {
+                navLinks.classList.remove('active');
+            }
         });
     </script>
 </body>
