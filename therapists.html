@@ -251,22 +251,6 @@
             margin-bottom: 1rem;
         }
         
-        .therapist-specialties {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.5rem;
-            margin-bottom: 1rem;
-        }
-        
-        .specialty-tag {
-            background: rgba(26,58,47,0.1);
-            color: var(--primary);
-            padding: 0.2rem 0.6rem;
-            border-radius: 12px;
-            font-size: 0.75rem;
-            font-weight: 500;
-        }
-        
         .therapist-bio {
             color: var(--text-muted);
             font-size: 0.95rem;
@@ -375,130 +359,116 @@
     <section class="therapists-section">
         <div class="section-header">
             <h2>Our Professional Team</h2>
-            <p>Each therapist brings unique expertise and healing touch</p>
+            <p>Each therapist is fully certified in all massage modalities</p>
         </div>
         
         <div class="therapists-grid">
-            <!-- ==================== EDIT IMAGES HERE ==================== -->
-            <!-- To change a photo: replace "images/rayna.jpg" with your image path -->
-            <!-- Example: src="images/rayna.jpg" or src="https://your-site.com/photo.jpg" -->
+            
+            <!-- ==================== HOW TO ADD YOUR OWN IMAGES ==================== -->
+            <!-- 
+                STEP 1: Create a folder named "images" in the same folder as this HTML file.
+                STEP 2: Put your photos inside that folder. Name them exactly:
+                         rayna.jpg, arlene.jpg, victoria.jpg, renae.jpg, skyla.jpg
+                STEP 3: The code below will automatically load them.
+                STEP 4: If you want to use a different folder name or file type,
+                         just change the "src=" path below. Examples:
+                         - src="photos/rayna.png"
+                         - src="https://yourwebsite.com/rayna.jpg"
+                         - src="../assets/rayna.jpeg"
+            -->
+            <!-- ================================================================== -->
 
             <!-- Therapist 1: Rayna -->
             <div class="therapist-card" data-therapist="rayna">
                 <div class="therapist-image">
-                    <!-- EDIT IMAGE: Change src below to your photo path -->
-                    <img src="images/rayna.jpg" alt="Rayna - Master Massage Therapist" onerror="this.style.display='none'; this.parentElement.innerHTML='<i class=\'fas fa-user img-placeholder\'></i><span class=\'therapist-badge\'>Top Rated</span>';">
+                    <!-- CHANGE THIS SRC TO YOUR IMAGE PATH -->
+                    <img src="images/rayna.jpg" alt="Rayna" onerror="this.style.display='none'; this.parentElement.innerHTML='<i class=\'fas fa-user img-placeholder\'></i><span class=\'therapist-badge\'>Top Rated</span>';">
                     <span class="therapist-badge">Top Rated</span>
                 </div>
                 <div class="therapist-content">
                     <h3>Rayna</h3>
-                    <div class="therapist-title">Master Massage Therapist</div>
-                    <div class="therapist-specialties">
-                        <span class="specialty-tag">Swedish</span>
-                        <span class="specialty-tag">Deep Tissue</span>
-                        <span class="specialty-tag">Hot Stone</span>
-                    </div>
-                    <p class="therapist-bio">12 years of experience specializing in therapeutic massage and stress relief techniques.</p>
+                    <div class="therapist-title">Certified Massage Therapist</div>
+                    <p class="therapist-bio">Fully trained in Swedish, Deep Tissue, Hot Stone, Sports, Aromatherapy, Reflexology, Prenatal, and Thai massage techniques.</p>
                     <div class="therapist-stats">
                         <span><i class="fas fa-star"></i> 4.9</span>
-                        <span><i class="fas fa-calendar"></i> 12 yrs exp</span>
+                        <span><i class="fas fa-calendar"></i> 3 yrs exp</span>
                     </div>
-                    <button class="btn-book" onclick="bookWithTherapist('rayna', 'Rayna', 'Master Massage Therapist')">Book with Rayna</button>
+                    <button class="btn-book" onclick="bookWithTherapist('rayna', 'Rayna', 'Certified Massage Therapist')">Book with Rayna</button>
                 </div>
             </div>
 
             <!-- Therapist 2: Arlene -->
             <div class="therapist-card" data-therapist="arlene">
                 <div class="therapist-image">
-                    <!-- EDIT IMAGE: Change src below to your photo path -->
-                    <img src="images/arlene.jpg" alt="Arlene - Sports Massage Expert" onerror="this.style.display='none'; this.parentElement.innerHTML='<i class=\'fas fa-user img-placeholder\'></i><span class=\'therapist-badge\'>Sports Specialist</span>';">
+                    <!-- CHANGE THIS SRC TO YOUR IMAGE PATH -->
+                    <img src="images/arlene.jpg" alt="Arlene" onerror="this.style.display='none'; this.parentElement.innerHTML='<i class=\'fas fa-user img-placeholder\'></i><span class=\'therapist-badge\'>Sports Specialist</span>';">
                     <span class="therapist-badge">Sports Specialist</span>
                 </div>
                 <div class="therapist-content">
                     <h3>Arlene</h3>
-                    <div class="therapist-title">Sports Massage Expert</div>
-                    <div class="therapist-specialties">
-                        <span class="specialty-tag">Sports</span>
-                        <span class="specialty-tag">Deep Tissue</span>
-                        <span class="specialty-tag">Stretching</span>
-                    </div>
-                    <p class="therapist-bio">Former athletic trainer with 8 years experience in sports recovery and injury prevention.</p>
+                    <div class="therapist-title">Certified Massage Therapist</div>
+                    <p class="therapist-bio">Fully trained in Swedish, Deep Tissue, Hot Stone, Sports, Aromatherapy, Reflexology, Prenatal, and Thai massage techniques.</p>
                     <div class="therapist-stats">
                         <span><i class="fas fa-star"></i> 4.8</span>
-                        <span><i class="fas fa-calendar"></i> 8 yrs exp</span>
+                        <span><i class="fas fa-calendar"></i> 3 yrs exp</span>
                     </div>
-                    <button class="btn-book" onclick="bookWithTherapist('arlene', 'Arlene', 'Sports Massage Expert')">Book with Arlene</button>
+                    <button class="btn-book" onclick="bookWithTherapist('arlene', 'Arlene', 'Certified Massage Therapist')">Book with Arlene</button>
                 </div>
             </div>
 
             <!-- Therapist 3: Victoria -->
             <div class="therapist-card" data-therapist="victoria">
                 <div class="therapist-image">
-                    <!-- EDIT IMAGE: Change src below to your photo path -->
-                    <img src="images/victoria.jpg" alt="Victoria - Holistic Wellness Practitioner" onerror="this.style.display='none'; this.parentElement.innerHTML='<i class=\'fas fa-user img-placeholder\'></i><span class=\'therapist-badge\'>Aromatherapy</span>';">
+                    <!-- CHANGE THIS SRC TO YOUR IMAGE PATH -->
+                    <img src="images/victoria.jpg" alt="Victoria" onerror="this.style.display='none'; this.parentElement.innerHTML='<i class=\'fas fa-user img-placeholder\'></i><span class=\'therapist-badge\'>Aromatherapy</span>';">
                     <span class="therapist-badge">Aromatherapy</span>
                 </div>
                 <div class="therapist-content">
                     <h3>Victoria</h3>
-                    <div class="therapist-title">Holistic Wellness Practitioner</div>
-                    <div class="therapist-specialties">
-                        <span class="specialty-tag">Aromatherapy</span>
-                        <span class="specialty-tag">Swedish</span>
-                        <span class="specialty-tag">Reflexology</span>
-                    </div>
-                    <p class="therapist-bio">Certified aromatherapist combining essential oils with massage for complete mind-body healing.</p>
+                    <div class="therapist-title">Certified Massage Therapist</div>
+                    <p class="therapist-bio">Fully trained in Swedish, Deep Tissue, Hot Stone, Sports, Aromatherapy, Reflexology, Prenatal, and Thai massage techniques.</p>
                     <div class="therapist-stats">
                         <span><i class="fas fa-star"></i> 4.9</span>
-                        <span><i class="fas fa-calendar"></i> 10 yrs exp</span>
+                        <span><i class="fas fa-calendar"></i> 3 yrs exp</span>
                     </div>
-                    <button class="btn-book" onclick="bookWithTherapist('victoria', 'Victoria', 'Holistic Wellness Practitioner')">Book with Victoria</button>
+                    <button class="btn-book" onclick="bookWithTherapist('victoria', 'Victoria', 'Certified Massage Therapist')">Book with Victoria</button>
                 </div>
             </div>
 
             <!-- Therapist 4: Renae -->
             <div class="therapist-card" data-therapist="renae">
                 <div class="therapist-image">
-                    <!-- EDIT IMAGE: Change src below to your photo path -->
-                    <img src="images/renae.jpg" alt="Renae - Deep Tissue Specialist" onerror="this.style.display='none'; this.parentElement.innerHTML='<i class=\'fas fa-user img-placeholder\'></i>';">
+                    <!-- CHANGE THIS SRC TO YOUR IMAGE PATH -->
+                    <img src="images/renae.jpg" alt="Renae" onerror="this.style.display='none'; this.parentElement.innerHTML='<i class=\'fas fa-user img-placeholder\'></i>';">
                 </div>
                 <div class="therapist-content">
                     <h3>Renae</h3>
-                    <div class="therapist-title">Deep Tissue Specialist</div>
-                    <div class="therapist-specialties">
-                        <span class="specialty-tag">Deep Tissue</span>
-                        <span class="specialty-tag">Trigger Point</span>
-                        <span class="specialty-tag">Myofascial</span>
-                    </div>
-                    <p class="therapist-bio">Expert in chronic pain management and deep muscle therapy with 15 years clinical experience.</p>
+                    <div class="therapist-title">Certified Massage Therapist</div>
+                    <p class="therapist-bio">Fully trained in Swedish, Deep Tissue, Hot Stone, Sports, Aromatherapy, Reflexology, Prenatal, and Thai massage techniques.</p>
                     <div class="therapist-stats">
                         <span><i class="fas fa-star"></i> 4.9</span>
-                        <span><i class="fas fa-calendar"></i> 15 yrs exp</span>
+                        <span><i class="fas fa-calendar"></i> 3 yrs exp</span>
                     </div>
-                    <button class="btn-book" onclick="bookWithTherapist('renae', 'Renae', 'Deep Tissue Specialist')">Book with Renae</button>
+                    <button class="btn-book" onclick="bookWithTherapist('renae', 'Renae', 'Certified Massage Therapist')">Book with Renae</button>
                 </div>
             </div>
 
             <!-- Therapist 5: Skyla -->
             <div class="therapist-card" data-therapist="skyla">
                 <div class="therapist-image">
-                    <!-- EDIT IMAGE: Change src below to your photo path -->
-                    <img src="images/skyla.jpg" alt="Skyla - Stone Therapy Expert" onerror="this.style.display='none'; this.parentElement.innerHTML='<i class=\'fas fa-user img-placeholder\'></i><span class=\'therapist-badge\'>Hot Stone</span>';">
+                    <!-- CHANGE THIS SRC TO YOUR IMAGE PATH -->
+                    <img src="images/skyla.jpg" alt="Skyla" onerror="this.style.display='none'; this.parentElement.innerHTML='<i class=\'fas fa-user img-placeholder\'></i><span class=\'therapist-badge\'>Hot Stone</span>';">
                     <span class="therapist-badge">Hot Stone</span>
                 </div>
                 <div class="therapist-content">
                     <h3>Skyla</h3>
-                    <div class="therapist-title">Stone Therapy Expert</div>
-                    <div class="therapist-specialties">
-                        <span class="specialty-tag">Hot Stone</span>
-                        <span class="specialty-tag">Swedish</span>
-                        <span class="specialty-tag">Chakra</span>
-                    </div>
-                    <p class="therapist-bio">Specialized in hot stone therapy and energy balancing techniques for deep relaxation.</p>
+                    <div class="therapist-title">Certified Massage Therapist</div>
+                    <p class="therapist-bio">Fully trained in Swedish, Deep Tissue, Hot Stone, Sports, Aromatherapy, Reflexology, Prenatal, and Thai massage techniques.</p>
                     <div class="therapist-stats">
                         <span><i class="fas fa-star"></i> 4.7</span>
-                        <span><i class="fas fa-calendar"></i> 7 yrs exp</span>
+                        <span><i class="fas fa-calendar"></i> 3 yrs exp</span>
                     </div>
-                    <button class="btn-book" onclick="bookWithTherapist('skyla', 'Skyla', 'Stone Therapy Expert')">Book with Skyla</button>
+                    <button class="btn-book" onclick="bookWithTherapist('skyla', 'Skyla', 'Certified Massage Therapist')">Book with Skyla</button>
                 </div>
             </div>
 
