@@ -38,7 +38,7 @@
             font-family: 'Playfair Display', serif;
         }
         
-        /* Navigation - Same as Services */
+        /* Navigation */
         nav {
             position: sticky;
             top: 0;
@@ -128,33 +128,8 @@
                 display: block;
             }
         }
-    </style>
-</head>
-<body>
-    <nav>
-        <div class="nav-container">
-            <a href="index.html" class="logo">Harmony <span>Wellness</span></a>
-            <ul class="nav-links" id="navLinks">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="services.html">Services</a></li>
-                <li><a href="therapists.html" class="active">Therapists</a></li>
-                <li><a href="support.html">Support</a></li>
-                <li><a href="checkout.html">Book Now</a></li>
-            </ul>
-            <div class="mobile-menu" onclick="toggleNav()">
-                <i class="fas fa-bars"></i>
-            </div>
-        </div>
-    </nav>
-        <!-- Hero Section -->
-    <section class="hero">
-        <div class="hero-content">
-            <h1>Meet Our Expert Therapists</h1>
-            <p>Highly trained professionals dedicated to your wellness journey</p>
-        </div>
-    </section>
-
-    <style>
+        
+        /* Hero */
         .hero {
             background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
             color: var(--white);
@@ -225,7 +200,7 @@
         }
         
         .therapist-image {
-            height: 280px;
+            height: 320px;
             background: linear-gradient(135deg, var(--bg-light) 0%, #e8e6e3 100%);
             display: flex;
             align-items: center;
@@ -234,7 +209,14 @@
             overflow: hidden;
         }
         
-        .therapist-image i {
+        .therapist-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+        
+        .therapist-image .img-placeholder {
             font-size: 5rem;
             color: var(--primary-light);
             opacity: 0.3;
@@ -328,288 +310,8 @@
             transform: translateY(-2px);
             box-shadow: 0 4px 12px rgba(26,58,47,0.3);
         }
-    </style>
-        <section class="therapists-section">
-        <div class="section-header">
-            <h2>Our Professional Team</h2>
-            <p>Each therapist brings unique expertise and healing touch</p>
-        </div>
         
-        <div class="therapists-grid">
-            <!-- Therapist 1: Sarah Chen -->
-            <div class="therapist-card" data-therapist="sarah-chen">
-                <div class="therapist-image">
-                    <i class="fas fa-user"></i>
-                    <span class="therapist-badge">Top Rated</span>
-                </div>
-                <div class="therapist-content">
-                    <h3>Sarah Chen</h3>
-                    <div class="therapist-title">Master Massage Therapist</div>
-                    <div class="therapist-specialties">
-                        <span class="specialty-tag">Swedish</span>
-                        <span class="specialty-tag">Deep Tissue</span>
-                        <span class="specialty-tag">Hot Stone</span>
-                    </div>
-                    <p class="therapist-bio">12 years of experience specializing in therapeutic massage and stress relief techniques.</p>
-                    <div class="therapist-stats">
-                        <span><i class="fas fa-star"></i> 4.9</span>
-                        <span><i class="fas fa-calendar"></i> 12 yrs exp</span>
-                    </div>
-                    <button class="btn-book" onclick="bookWithTherapist('sarah-chen', 'Sarah Chen', 'Master Massage Therapist')">Book with Sarah</button>
-                </div>
-            </div>
-
-            <!-- Therapist 2: Michael Rodriguez -->
-            <div class="therapist-card" data-therapist="michael-rodriguez">
-                <div class="therapist-image">
-                    <i class="fas fa-user"></i>
-                    <span class="therapist-badge">Sports Specialist</span>
-                </div>
-                <div class="therapist-content">
-                    <h3>Michael Rodriguez</h3>
-                    <div class="therapist-title">Sports Massage Expert</div>
-                    <div class="therapist-specialties">
-                        <span class="specialty-tag">Sports</span>
-                        <span class="specialty-tag">Deep Tissue</span>
-                        <span class="specialty-tag">Stretching</span>
-                    </div>
-                    <p class="therapist-bio">Former athletic trainer with 8 years experience in sports recovery and injury prevention.</p>
-                    <div class="therapist-stats">
-                        <span><i class="fas fa-star"></i> 4.8</span>
-                        <span><i class="fas fa-calendar"></i> 8 yrs exp</span>
-                    </div>
-                    <button class="btn-book" onclick="bookWithTherapist('michael-rodriguez', 'Michael Rodriguez', 'Sports Massage Expert')">Book with Michael</button>
-                </div>
-            </div>
-
-            <!-- Therapist 3: Emma Thompson -->
-            <div class="therapist-card" data-therapist="emma-thompson">
-                <div class="therapist-image">
-                    <i class="fas fa-user"></i>
-                    <span class="therapist-badge">Aromatherapy</span>
-                </div>
-                <div class="therapist-content">
-                    <h3>Emma Thompson</h3>
-                    <div class="therapist-title">Holistic Wellness Practitioner</div>
-                    <div class="therapist-specialties">
-                        <span class="specialty-tag">Aromatherapy</span>
-                        <span class="specialty-tag">Swedish</span>
-                        <span class="specialty-tag">Reflexology</span>
-                    </div>
-                    <p class="therapist-bio">Certified aromatherapist combining essential oils with massage for complete mind-body healing.</p>
-                    <div class="therapist-stats">
-                        <span><i class="fas fa-star"></i> 4.9</span>
-                        <span><i class="fas fa-calendar"></i> 10 yrs exp</span>
-                    </div>
-                    <button class="btn-book" onclick="bookWithTherapist('emma-thompson', 'Emma Thompson', 'Holistic Wellness Practitioner')">Book with Emma</button>
-                </div>
-            </div>
-
-            <!-- Therapist 4: David Kim -->
-            <div class="therapist-card" data-therapist="david-kim">
-                <div class="therapist-image">
-                    <i class="fas fa-user"></i>
-                </div>
-                <div class="therapist-content">
-                    <h3>David Kim</h3>
-                    <div class="therapist-title">Deep Tissue Specialist</div>
-                    <div class="therapist-specialties">
-                        <span class="specialty-tag">Deep Tissue</span>
-                        <span class="specialty-tag">Trigger Point</span>
-                        <span class="specialty-tag">Myofascial</span>
-                    </div>
-                    <p class="therapist-bio">Expert in chronic pain management and deep muscle therapy with 15 years clinical experience.</p>
-                    <div class="therapist-stats">
-                        <span><i class="fas fa-star"></i> 4.9</span>
-                        <span><i class="fas fa-calendar"></i> 15 yrs exp</span>
-                    </div>
-                    <button class="btn-book" onclick="bookWithTherapist('david-kim', 'David Kim', 'Deep Tissue Specialist')">Book with David</button>
-                </div>
-            </div>
-
-            <!-- Therapist 5: Lisa Patel -->
-            <div class="therapist-card" data-therapist="lisa-patel">
-                <div class="therapist-image">
-                    <i class="fas fa-user"></i>
-                    <span class="therapist-badge">Hot Stone</span>
-                </div>
-                <div class="therapist-content">
-                    <h3>Lisa Patel</h3>
-                    <div class="therapist-title">Stone Therapy Expert</div>
-                    <div class="therapist-specialties">
-                        <span class="specialty-tag">Hot Stone</span>
-                        <span class="specialty-tag">Swedish</span>
-                        <span class="specialty-tag">Chakra</span>
-                    </div>
-                    <p class="therapist-bio">Specialized in hot stone therapy and energy balancing techniques for deep relaxation.</p>
-                    <div class="therapist-stats">
-                        <span><i class="fas fa-star"></i> 4.7</span>
-                        <span><i class="fas fa-calendar"></i> 7 yrs exp</span>
-                    </div>
-                    <button class="btn-book" onclick="bookWithTherapist('lisa-patel', 'Lisa Patel', 'Stone Therapy Expert')">Book with Lisa</button>
-                </div>
-            </div>
-
-            <!-- Therapist 6: James Wilson -->
-            <div class="therapist-card" data-therapist="james-wilson">
-                <div class="therapist-image">
-                    <i class="fas fa-user"></i>
-                </div>
-                <div class="therapist-content">
-                    <h3>James Wilson</h3>
-                    <div class="therapist-title">Couples Massage Specialist</div>
-                    <div class="therapist-specialties">
-                        <span class="specialty-tag">Couples</span>
-                        <span class="specialty-tag">Swedish</span>
-                        <span class="specialty-tag">Deep Tissue</span>
-                    </div>
-                    <p class="therapist-bio">Creates memorable shared experiences for couples with synchronized massage techniques.</p>
-                    <div class="therapist-stats">
-                        <span><i class="fas fa-star"></i> 4.8</span>
-                        <span><i class="fas fa-calendar"></i> 9 yrs exp</span>
-                    </div>
-                    <button class="btn-book" onclick="bookWithTherapist('james-wilson', 'James Wilson', 'Couples Massage Specialist')">Book with James</button>
-                </div>
-            </div>
-
-            <!-- Therapist 7: Anna Martinez -->
-            <div class="therapist-card" data-therapist="anna-martinez">
-                <div class="therapist-image">
-                    <i class="fas fa-user"></i>
-                    <span class="therapist-badge">Prenatal</span>
-                </div>
-                <div class="therapist-content">
-                    <h3>Anna Martinez</h3>
-                    <div class="therapist-title">Prenatal & Women's Health</div>
-                    <div class="therapist-specialties">
-                        <span class="specialty-tag">Prenatal</span>
-                        <span class="specialty-tag">Swedish</span>
-                        <span class="specialty-tag">Relaxation</span>
-                    </div>
-                    <p class="therapist-bio">Certified in prenatal massage, providing safe and soothing treatments for expectant mothers.</p>
-                    <div class="therapist-stats">
-                        <span><i class="fas fa-star"></i> 4.9</span>
-                        <span><i class="fas fa-calendar"></i> 11 yrs exp</span>
-                    </div>
-                    <button class="btn-book" onclick="bookWithTherapist('anna-martinez', 'Anna Martinez', 'Prenatal & Womens Health')">Book with Anna</button>
-                </div>
-            </div>
-
-            <!-- Therapist 8: Robert Taylor -->
-            <div class="therapist-card" data-therapist="robert-taylor">
-                <div class="therapist-image">
-                    <i class="fas fa-user"></i>
-                </div>
-                <div class="therapist-content">
-                    <h3>Robert Taylor</h3>
-                    <div class="therapist-title">Medical Massage Therapist</div>
-                    <div class="therapist-specialties">
-                        <span class="specialty-tag">Medical</span>
-                        <span class="specialty-tag">Deep Tissue</span>
-                        <span class="specialty-tag">Rehab</span>
-                    </div>
-                    <p class="therapist-bio">Works with physicians to provide therapeutic massage for injury recovery and pain management.</p>
-                    <div class="therapist-stats">
-                        <span><i class="fas fa-star"></i> 4.8</span>
-                        <span><i class="fas fa-calendar"></i> 14 yrs exp</span>
-                    </div>
-                    <button class="btn-book" onclick="bookWithTherapist('robert-taylor', 'Robert Taylor', 'Medical Massage Therapist')">Book with Robert</button>
-                </div>
-            </div>
-
-            <!-- Therapist 9: Jennifer Liu -->
-            <div class="therapist-card" data-therapist="jennifer-liu">
-                <div class="therapist-image">
-                    <i class="fas fa-user"></i>
-                    <span class="therapist-badge">Shiatsu</span>
-                </div>
-                <div class="therapist-content">
-                    <h3>Jennifer Liu</h3>
-                    <div class="therapist-title">Eastern Modalities Expert</div>
-                    <div class="therapist-specialties">
-                        <span class="specialty-tag">Shiatsu</span>
-                        <span class="specialty-tag">Tui Na</span>
-                        <span class="specialty-tag">Acupressure</span>
-                    </div>
-                    <p class="therapist-bio">Trained in traditional Chinese medicine techniques, offering authentic Eastern healing arts.</p>
-                    <div class="therapist-stats">
-                        <span><i class="fas fa-star"></i> 4.9</span>
-                        <span><i class="fas fa-calendar"></i> 13 yrs exp</span>
-                    </div>
-                    <button class="btn-book" onclick="bookWithTherapist('jennifer-liu', 'Jennifer Liu', 'Eastern Modalities Expert')">Book with Jennifer</button>
-                </div>
-            </div>
-
-            <!-- Therapist 10: Marcus Johnson -->
-            <div class="therapist-card" data-therapist="marcus-johnson">
-                <div class="therapist-image">
-                    <i class="fas fa-user"></i>
-                </div>
-                <div class="therapist-content">
-                    <h3>Marcus Johnson</h3>
-                    <div class="therapist-title">Thai Massage Practitioner</div>
-                    <div class="therapist-specialties">
-                        <span class="specialty-tag">Thai Massage</span>
-                        <span class="specialty-tag">Stretching</span>
-                        <span class="specialty-tag">Energy Work</span>
-                    </div>
-                    <p class="therapist-bio">Certified in traditional Thai massage, combining assisted stretching with rhythmic compression.</p>
-                    <div class="therapist-stats">
-                        <span><i class="fas fa-star"></i> 4.7</span>
-                        <span><i class="fas fa-calendar"></i> 6 yrs exp</span>
-                    </div>
-                    <button class="btn-book" onclick="bookWithTherapist('marcus-johnson', 'Marcus Johnson', 'Thai Massage Practitioner')">Book with Marcus</button>
-                </div>
-            </div>
-
-            <!-- Therapist 11: Sophia Anderson -->
-            <div class="therapist-card" data-therapist="sophia-anderson">
-                <div class="therapist-image">
-                    <i class="fas fa-user"></i>
-                    <span class="therapist-badge">Reflexology</span>
-                </div>
-                <div class="therapist-content">
-                    <h3>Sophia Anderson</h3>
-                    <div class="therapist-title">Reflexology Specialist</div>
-                    <div class="therapist-specialties">
-                        <span class="specialty-tag">Reflexology</span>
-                        <span class="specialty-tag">Foot Massage</span>
-                        <span class="specialty-tag">Relaxation</span>
-                    </div>
-                    <p class="therapist-bio">Expert in foot reflexology and pressure point therapy for whole-body wellness through the feet.</p>
-                    <div class="therapist-stats">
-                        <span><i class="fas fa-star"></i> 4.8</span>
-                        <span><i class="fas fa-calendar"></i> 8 yrs exp</span>
-                    </div>
-                    <button class="btn-book" onclick="bookWithTherapist('sophia-anderson', 'Sophia Anderson', 'Reflexology Specialist')">Book with Sophia</button>
-                </div>
-            </div>
-        </div>
-    </section>
-        <!-- Footer -->
-    <footer>
-        <div class="footer-content">
-            <div class="footer-section">
-                <h4>Harmony Wellness</h4>
-                <p>Your journey to relaxation and rejuvenation starts here.</p>
-            </div>
-            <div class="footer-section">
-                <h4>Contact</h4>
-                <p><i class="fas fa-phone"></i> (555) 123-4567</p>
-                <p><i class="fas fa-envelope"></i> info@harmonywellness.com</p>
-            </div>
-            <div class="footer-section">
-                <h4>Hours</h4>
-                <p>Mon-Sat: 9AM - 9PM</p>
-                <p>Sunday: 10AM - 6PM</p>
-            </div>
-        </div>
-        <div class="footer-bottom">
-            <p>&copy; 2026 Harmony Wellness. All rights reserved.</p>
-        </div>
-    </footer>
-
-    <style>
+        /* Footer */
         footer {
             background: var(--primary);
             color: var(--white);
@@ -644,6 +346,187 @@
             opacity: 0.7;
         }
     </style>
+</head>
+<body>
+    <nav>
+        <div class="nav-container">
+            <a href="index.html" class="logo">Harmony <span>Wellness</span></a>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="therapists.html" class="active">Therapists</a></li>
+                <li><a href="support.html">Support</a></li>
+                <li><a href="checkout.html">Book Now</a></li>
+            </ul>
+            <div class="mobile-menu" onclick="toggleNav()">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Meet Our Expert Therapists</h1>
+            <p>Highly trained professionals dedicated to your wellness journey</p>
+        </div>
+    </section>
+
+    <section class="therapists-section">
+        <div class="section-header">
+            <h2>Our Professional Team</h2>
+            <p>Each therapist brings unique expertise and healing touch</p>
+        </div>
+        
+        <div class="therapists-grid">
+            <!-- ==================== EDIT IMAGES HERE ==================== -->
+            <!-- To change a photo: replace "images/rayna.jpg" with your image path -->
+            <!-- Example: src="images/rayna.jpg" or src="https://your-site.com/photo.jpg" -->
+
+            <!-- Therapist 1: Rayna -->
+            <div class="therapist-card" data-therapist="rayna">
+                <div class="therapist-image">
+                    <!-- EDIT IMAGE: Change src below to your photo path -->
+                    <img src="images/rayna.jpg" alt="Rayna - Master Massage Therapist" onerror="this.style.display='none'; this.parentElement.innerHTML='<i class=\'fas fa-user img-placeholder\'></i><span class=\'therapist-badge\'>Top Rated</span>';">
+                    <span class="therapist-badge">Top Rated</span>
+                </div>
+                <div class="therapist-content">
+                    <h3>Rayna</h3>
+                    <div class="therapist-title">Master Massage Therapist</div>
+                    <div class="therapist-specialties">
+                        <span class="specialty-tag">Swedish</span>
+                        <span class="specialty-tag">Deep Tissue</span>
+                        <span class="specialty-tag">Hot Stone</span>
+                    </div>
+                    <p class="therapist-bio">12 years of experience specializing in therapeutic massage and stress relief techniques.</p>
+                    <div class="therapist-stats">
+                        <span><i class="fas fa-star"></i> 4.9</span>
+                        <span><i class="fas fa-calendar"></i> 12 yrs exp</span>
+                    </div>
+                    <button class="btn-book" onclick="bookWithTherapist('rayna', 'Rayna', 'Master Massage Therapist')">Book with Rayna</button>
+                </div>
+            </div>
+
+            <!-- Therapist 2: Arlene -->
+            <div class="therapist-card" data-therapist="arlene">
+                <div class="therapist-image">
+                    <!-- EDIT IMAGE: Change src below to your photo path -->
+                    <img src="images/arlene.jpg" alt="Arlene - Sports Massage Expert" onerror="this.style.display='none'; this.parentElement.innerHTML='<i class=\'fas fa-user img-placeholder\'></i><span class=\'therapist-badge\'>Sports Specialist</span>';">
+                    <span class="therapist-badge">Sports Specialist</span>
+                </div>
+                <div class="therapist-content">
+                    <h3>Arlene</h3>
+                    <div class="therapist-title">Sports Massage Expert</div>
+                    <div class="therapist-specialties">
+                        <span class="specialty-tag">Sports</span>
+                        <span class="specialty-tag">Deep Tissue</span>
+                        <span class="specialty-tag">Stretching</span>
+                    </div>
+                    <p class="therapist-bio">Former athletic trainer with 8 years experience in sports recovery and injury prevention.</p>
+                    <div class="therapist-stats">
+                        <span><i class="fas fa-star"></i> 4.8</span>
+                        <span><i class="fas fa-calendar"></i> 8 yrs exp</span>
+                    </div>
+                    <button class="btn-book" onclick="bookWithTherapist('arlene', 'Arlene', 'Sports Massage Expert')">Book with Arlene</button>
+                </div>
+            </div>
+
+            <!-- Therapist 3: Victoria -->
+            <div class="therapist-card" data-therapist="victoria">
+                <div class="therapist-image">
+                    <!-- EDIT IMAGE: Change src below to your photo path -->
+                    <img src="images/victoria.jpg" alt="Victoria - Holistic Wellness Practitioner" onerror="this.style.display='none'; this.parentElement.innerHTML='<i class=\'fas fa-user img-placeholder\'></i><span class=\'therapist-badge\'>Aromatherapy</span>';">
+                    <span class="therapist-badge">Aromatherapy</span>
+                </div>
+                <div class="therapist-content">
+                    <h3>Victoria</h3>
+                    <div class="therapist-title">Holistic Wellness Practitioner</div>
+                    <div class="therapist-specialties">
+                        <span class="specialty-tag">Aromatherapy</span>
+                        <span class="specialty-tag">Swedish</span>
+                        <span class="specialty-tag">Reflexology</span>
+                    </div>
+                    <p class="therapist-bio">Certified aromatherapist combining essential oils with massage for complete mind-body healing.</p>
+                    <div class="therapist-stats">
+                        <span><i class="fas fa-star"></i> 4.9</span>
+                        <span><i class="fas fa-calendar"></i> 10 yrs exp</span>
+                    </div>
+                    <button class="btn-book" onclick="bookWithTherapist('victoria', 'Victoria', 'Holistic Wellness Practitioner')">Book with Victoria</button>
+                </div>
+            </div>
+
+            <!-- Therapist 4: Renae -->
+            <div class="therapist-card" data-therapist="renae">
+                <div class="therapist-image">
+                    <!-- EDIT IMAGE: Change src below to your photo path -->
+                    <img src="images/renae.jpg" alt="Renae - Deep Tissue Specialist" onerror="this.style.display='none'; this.parentElement.innerHTML='<i class=\'fas fa-user img-placeholder\'></i>';">
+                </div>
+                <div class="therapist-content">
+                    <h3>Renae</h3>
+                    <div class="therapist-title">Deep Tissue Specialist</div>
+                    <div class="therapist-specialties">
+                        <span class="specialty-tag">Deep Tissue</span>
+                        <span class="specialty-tag">Trigger Point</span>
+                        <span class="specialty-tag">Myofascial</span>
+                    </div>
+                    <p class="therapist-bio">Expert in chronic pain management and deep muscle therapy with 15 years clinical experience.</p>
+                    <div class="therapist-stats">
+                        <span><i class="fas fa-star"></i> 4.9</span>
+                        <span><i class="fas fa-calendar"></i> 15 yrs exp</span>
+                    </div>
+                    <button class="btn-book" onclick="bookWithTherapist('renae', 'Renae', 'Deep Tissue Specialist')">Book with Renae</button>
+                </div>
+            </div>
+
+            <!-- Therapist 5: Skyla -->
+            <div class="therapist-card" data-therapist="skyla">
+                <div class="therapist-image">
+                    <!-- EDIT IMAGE: Change src below to your photo path -->
+                    <img src="images/skyla.jpg" alt="Skyla - Stone Therapy Expert" onerror="this.style.display='none'; this.parentElement.innerHTML='<i class=\'fas fa-user img-placeholder\'></i><span class=\'therapist-badge\'>Hot Stone</span>';">
+                    <span class="therapist-badge">Hot Stone</span>
+                </div>
+                <div class="therapist-content">
+                    <h3>Skyla</h3>
+                    <div class="therapist-title">Stone Therapy Expert</div>
+                    <div class="therapist-specialties">
+                        <span class="specialty-tag">Hot Stone</span>
+                        <span class="specialty-tag">Swedish</span>
+                        <span class="specialty-tag">Chakra</span>
+                    </div>
+                    <p class="therapist-bio">Specialized in hot stone therapy and energy balancing techniques for deep relaxation.</p>
+                    <div class="therapist-stats">
+                        <span><i class="fas fa-star"></i> 4.7</span>
+                        <span><i class="fas fa-calendar"></i> 7 yrs exp</span>
+                    </div>
+                    <button class="btn-book" onclick="bookWithTherapist('skyla', 'Skyla', 'Stone Therapy Expert')">Book with Skyla</button>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>Harmony Wellness</h4>
+                <p>Your journey to relaxation and rejuvenation starts here.</p>
+            </div>
+            <div class="footer-section">
+                <h4>Contact</h4>
+                <p><i class="fas fa-phone"></i> (555) 123-4567</p>
+                <p><i class="fas fa-envelope"></i> info@harmonywellness.com</p>
+            </div>
+            <div class="footer-section">
+                <h4>Hours</h4>
+                <p>Mon-Sat: 9AM - 9PM</p>
+                <p>Sunday: 10AM - 6PM</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Harmony Wellness. All rights reserved.</p>
+        </div>
+    </footer>
 
     <script>
         // Mobile Navigation
@@ -651,9 +534,8 @@
             document.getElementById('navLinks').classList.toggle('active');
         }
         
-        // Book with Therapist Function - Redirects to checkout with therapist pre-selected
+        // Book with Therapist Function
         function bookWithTherapist(therapistId, therapistName, therapistTitle) {
-            // Save to localStorage
             const bookingData = {
                 therapist: therapistId,
                 therapistName: therapistName,
@@ -669,7 +551,6 @@
             };
             localStorage.setItem('harmony_booking', JSON.stringify(bookingData));
             
-            // Build checkout URL with parameters
             const params = new URLSearchParams({
                 therapist: therapistId,
                 therapistName: therapistName,
@@ -677,7 +558,6 @@
                 source: 'therapists'
             });
             
-            // Redirect to checkout
             window.location.href = `checkout.html?${params.toString()}`;
         }
         
